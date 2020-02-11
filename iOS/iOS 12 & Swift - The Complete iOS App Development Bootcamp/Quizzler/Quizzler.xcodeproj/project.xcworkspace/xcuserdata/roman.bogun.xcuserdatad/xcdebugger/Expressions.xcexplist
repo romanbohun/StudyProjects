@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ViewController.updateUI():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewFrame.size.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.answerPressed(_:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "questionNumber">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.nextQuestion():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentIndex">
+            </PersistentString>
+            <PersistentString
+               value = "questionBank.list.count">
+            </PersistentString>
+            <PersistentString
+               value = "currentQuestion">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

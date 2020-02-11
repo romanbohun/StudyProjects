@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "BaseTabBarViewController.viewDidLoad():BaseTabBarViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewControllers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FeaturedDataSource.initCellWithData(forCell:andIndexPath:):FeaturedDataSource.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "super.tasks">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FeaturedViewController.addCreateTaskButton():FeaturedViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.navigationController">
+            </PersistentString>
+            <PersistentString
+               value = "self.navigationItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

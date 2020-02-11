@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="FactoryMethod\" />
+    <Folder Include="AbstractFactory\" />
+    <Folder Include="Singleton\" />
+    <Folder Include="Decorator\" />
+    <Folder Include="Iterator\" />
+    <Folder Include="Observer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="FactoryMethod\FactoryMethod.cs">
+      <ExcludeFromStyleCop>false</ExcludeFromStyleCop>
+    </Compile>
+  </ItemGroup>
+</Project>

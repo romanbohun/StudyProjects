@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberRandomizator", "NumberRandomizator\NumberRandomizator.csproj", "{A6CE4D1B-ACAB-4859-ABCC-1CC8B9FDDDF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberRandomizator.Implementation", "NumberRandomizator.Implementation\NumberRandomizator.Implementation.csproj", "{9EC81C6D-A9BF-42B9-8756-51D9F49D8017}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberRandomizator.Test", "NumberRandomizator.Test\NumberRandomizator.Test.csproj", "{EB99F127-DE3C-44E3-8A10-6A1761A3894F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6CE4D1B-ACAB-4859-ABCC-1CC8B9FDDDF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6CE4D1B-ACAB-4859-ABCC-1CC8B9FDDDF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6CE4D1B-ACAB-4859-ABCC-1CC8B9FDDDF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6CE4D1B-ACAB-4859-ABCC-1CC8B9FDDDF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EC81C6D-A9BF-42B9-8756-51D9F49D8017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EC81C6D-A9BF-42B9-8756-51D9F49D8017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EC81C6D-A9BF-42B9-8756-51D9F49D8017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EC81C6D-A9BF-42B9-8756-51D9F49D8017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB99F127-DE3C-44E3-8A10-6A1761A3894F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB99F127-DE3C-44E3-8A10-6A1761A3894F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB99F127-DE3C-44E3-8A10-6A1761A3894F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB99F127-DE3C-44E3-8A10-6A1761A3894F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
