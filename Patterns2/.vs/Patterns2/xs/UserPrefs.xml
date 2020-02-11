@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{003DD343-3040-42D1-B8A0-F649AC5519E7}|Default">
+  <MonoDevelop.Ide.ItemProperties.Patterns2 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Patterns2/Composite/ChainLauncher.cs">
+    <Files>
+      <File FileName="Patterns2/Adapter/Target.cs" Line="6" Column="22" />
+      <File FileName="Patterns2/Adapter/Classes.cs" Line="4" Column="24" />
+      <File FileName="Patterns2/Adapter/Adapter.cs" Line="9" Column="28" />
+      <File FileName="Patterns2/Adapter/AdapterLauncher.cs" Line="8" Column="40" />
+      <File FileName="Patterns2/Builder/BuilderLauncher.cs" Line="28" Column="10" />
+      <File FileName="Patterns2/Program.cs" Line="15" Column="1" />
+      <File FileName="Patterns2/Composite/Handler.cs" Line="7" Column="9" />
+      <File FileName="Patterns2/Composite/Purchase.cs" Line="14" Column="10" />
+      <File FileName="Patterns2/Composite/ConcreteHandlers.cs" Line="47" Column="95" />
+      <File FileName="Patterns2/Composite/ChainLauncher.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

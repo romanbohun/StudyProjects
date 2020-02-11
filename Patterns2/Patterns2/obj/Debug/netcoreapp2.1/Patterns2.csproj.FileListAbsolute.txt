@@ -1,0 +1,11 @@
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/obj/Debug/netcoreapp2.1/Patterns2.csprojResolveAssemblyReference.cache
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/obj/Debug/netcoreapp2.1/Patterns2.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/obj/Debug/netcoreapp2.1/Patterns2.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/obj/Debug/netcoreapp2.1/Patterns2.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/bin/Debug/netcoreapp2.1/Patterns2.deps.json
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/bin/Debug/netcoreapp2.1/Patterns2.runtimeconfig.json
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/bin/Debug/netcoreapp2.1/Patterns2.runtimeconfig.dev.json
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/bin/Debug/netcoreapp2.1/Patterns2.dll
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/bin/Debug/netcoreapp2.1/Patterns2.pdb
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/obj/Debug/netcoreapp2.1/Patterns2.dll
+/Volumes/Data/Projects/Study/StudyProjects/Patterns2/Patterns2/obj/Debug/netcoreapp2.1/Patterns2.pdb

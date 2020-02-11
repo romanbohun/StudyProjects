@@ -1,0 +1,11 @@
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/bin/Debug/netcoreapp2.1/Polymorphism.deps.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/bin/Debug/netcoreapp2.1/Polymorphism.runtimeconfig.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/bin/Debug/netcoreapp2.1/Polymorphism.runtimeconfig.dev.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/bin/Debug/netcoreapp2.1/Polymorphism.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/bin/Debug/netcoreapp2.1/Polymorphism.pdb
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/obj/Debug/netcoreapp2.1/Polymorphism.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/obj/Debug/netcoreapp2.1/Polymorphism.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/obj/Debug/netcoreapp2.1/Polymorphism.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/obj/Debug/netcoreapp2.1/Polymorphism.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/obj/Debug/netcoreapp2.1/Polymorphism.pdb
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/Polymorphism/obj/Debug/netcoreapp2.1/Polymorphism.csprojResolveAssemblyReference.cache

@@ -1,0 +1,16 @@
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/obj/Debug/netcoreapp2.1/tdd1.csprojResolveAssemblyReference.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/obj/Debug/netcoreapp2.1/tdd1.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/obj/Debug/netcoreapp2.1/tdd1.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/obj/Debug/netcoreapp2.1/tdd1.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/tdd1.deps.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/tdd1.runtimeconfig.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/tdd1.runtimeconfig.dev.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/tdd1.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/tdd1.pdb
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/Calculator.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/bin/Debug/netcoreapp2.1/Calculator.pdb
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/obj/Debug/netcoreapp2.1/tdd1.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/tdd1/obj/Debug/netcoreapp2.1/tdd1.pdb

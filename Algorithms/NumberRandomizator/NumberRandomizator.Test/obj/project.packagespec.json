@@ -1,0 +1,59 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Volumes/Data/Projects/Study/StudyProjects/Algorithms/NumberRandomizator/NumberRandomizator.Test/NumberRandomizator.Test.csproj",
+    "projectName": "NumberRandomizator.Test",
+    "projectPath": "/Volumes/Data/Projects/Study/StudyProjects/Algorithms/NumberRandomizator/NumberRandomizator.Test/NumberRandomizator.Test.csproj",
+    "outputPath": "/Volumes/Data/Projects/Study/StudyProjects/Algorithms/NumberRandomizator/NumberRandomizator.Test/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.1"
+    ],
+    "frameworks": {
+      "netcoreapp2.1": {
+        "projectReferences": {
+          "/Volumes/Data/Projects/Study/StudyProjects/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/NumberRandomizator.Implementation.csproj": {
+            "projectPath": "/Volumes/Data/Projects/Study/StudyProjects/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/NumberRandomizator.Implementation.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.1": {
+      "dependencies": {
+        "MSTest.TestAdapter": {
+          "target": "Package",
+          "version": "[1.2.1, )"
+        },
+        "MSTest.TestFramework": {
+          "target": "Package",
+          "version": "[1.2.1, )"
+        },
+        "Microsoft.NET.Test.Sdk": {
+          "target": "Package",
+          "version": "[15.7.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.0, )",
+          "autoReferenced": true
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

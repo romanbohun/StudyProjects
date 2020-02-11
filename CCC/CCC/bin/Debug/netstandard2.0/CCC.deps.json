@@ -1,0 +1,100 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/",
+    "signature": "f5309c49f190f455ef29bc7b0b78a9b652ffb081"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/": {
+      "CCC/1.0.0": {
+        "dependencies": {
+          "Fody": "4.0.2",
+          "MethodDecorator.Fody": "1.0.2",
+          "NETStandard.Library": "2.0.3",
+          "Xamarin.Forms": "3.6.0.220655"
+        },
+        "runtime": {
+          "CCC.dll": {}
+        }
+      },
+      "Fody/4.0.2": {},
+      "MethodDecorator.Fody/1.0.2": {
+        "dependencies": {
+          "Fody": "4.0.2",
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard1.0/MethodDecorator.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/1.1.0": {},
+      "NETStandard.Library/2.0.3": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "Xamarin.Forms/3.6.0.220655": {
+        "runtime": {
+          "lib/netstandard2.0/Xamarin.Forms.Core.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          },
+          "lib/netstandard2.0/Xamarin.Forms.Platform.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CCC/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Fody/4.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RDhG+fehgWRY6D23WDkE1XhxJvUx7T8SfFau1duRNHQ/PWYgTVTABw1ycbg+IEWz5QHtMN/zozrNZSCQvmVXjg==",
+      "path": "fody/4.0.2",
+      "hashPath": "fody.4.0.2.nupkg.sha512"
+    },
+    "MethodDecorator.Fody/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IsVRVJMJNiaXbD0+O2oA2eyO9PYOSWl9lYUtAPVKoR28snhhpsJt0my1VWEvyHBneXGTVOvVSRg3djIh/icLog==",
+      "path": "methoddecorator.fody/1.0.2",
+      "hashPath": "methoddecorator.fody.1.0.2.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-548M6mnBSJWxsIlkQHfbzoYxpiYFXZZSL00p4GHYv8PkiqFBnnT68mW5mGEsA/ch9fDO9GkPgkFQpWiXZN7mAQ==",
+      "path": "netstandard.library/2.0.3",
+      "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "Xamarin.Forms/3.6.0.220655": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ltCTV5Tez9zTbg9f6UunegHPWRzfVHKGHeLOmXeJvNFEPwXrHDwjCcRqMqNISLRjzWxT1MuC9wgKdMoxGdBLqQ==",
+      "path": "xamarin.forms/3.6.0.220655",
+      "hashPath": "xamarin.forms.3.6.0.220655.nupkg.sha512"
+    }
+  }
+}

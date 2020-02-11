@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{8B6F35C6-3834-42D2-9116-74E92C54DFE9}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CCC.iOS/Main.cs">
+    <Files>
+      <File FileName="CCC/MainPage.xaml.cs" Line="14" Column="26" />
+      <File FileName="CCC/MainPage.xaml" Line="5" Column="41" />
+      <File FileName="CCC/C3DefaultLoggerAttribute.cs" Line="31" Column="25" />
+      <File FileName="CCC/TestClass.cs" Line="14" Column="43" />
+      <File FileName="CCC.iOS/Main.cs" Line="12" Column="60" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CCC" expanded="True">
+            <Node name="CCC" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="MainPage.xaml" expanded="True" />
+            </Node>
+            <Node name="CCC.Android" expanded="True">
+              <Node name="Packages" expanded="True" />
+            </Node>
+            <Node name="CCC.iOS" expanded="True">
+              <Node name="Packages" expanded="True" />
+              <Node name="Main.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.CCC.Android FirstBuild="True" PreferredExecutionTarget="Android.Android_Accelerated_Oreo" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.CCC.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.3FDE6864-D0C6-42DF-AB27-C1E3D880E6C3" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

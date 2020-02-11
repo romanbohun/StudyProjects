@@ -1,0 +1,17 @@
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/NumberRandomizator.Test.deps.json
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/NumberRandomizator.Test.runtimeconfig.json
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/NumberRandomizator.Test.runtimeconfig.dev.json
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/NumberRandomizator.Test.dll
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/NumberRandomizator.Test.pdb
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/NumberRandomizator.Implementation.dll
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/bin/Debug/netcoreapp2.1/NumberRandomizator.Implementation.pdb
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/obj/Debug/netcoreapp2.1/NumberRandomizator.Test.csprojAssemblyReference.cache
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/obj/Debug/netcoreapp2.1/NumberRandomizator.Test.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/obj/Debug/netcoreapp2.1/NumberRandomizator.Test.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/obj/Debug/netcoreapp2.1/NumberRandomizator.Test.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/obj/Debug/netcoreapp2.1/NumberRandomizator.Test.csproj.CopyComplete
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/obj/Debug/netcoreapp2.1/NumberRandomizator.Test.dll
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Test/obj/Debug/netcoreapp2.1/NumberRandomizator.Test.pdb

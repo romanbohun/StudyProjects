@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{658C0E5C-C02C-42B5-90E4-8F4F27DA3215}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Calculator/SalaryCalculator.cs">
+    <Files>
+      <File FileName="tdd1/CalculatorTest.cs" Line="36" Column="1" />
+      <File FileName="Calculator/SalaryCalculator.cs" Line="12" Column="13" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="tdd1" expanded="True">
+            <Node name="tdd1" expanded="True">
+              <Node name="tdd1" expanded="True">
+                <Node name="CalculatorTest" expanded="True">
+                  <Node name="HourlyWageTest" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.tdd1 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

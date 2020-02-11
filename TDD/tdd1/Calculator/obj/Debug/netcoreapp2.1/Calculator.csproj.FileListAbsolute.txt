@@ -1,0 +1,8 @@
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/Calculator/bin/Debug/netcoreapp2.1/Calculator.deps.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/Calculator/bin/Debug/netcoreapp2.1/Calculator.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/Calculator/bin/Debug/netcoreapp2.1/Calculator.pdb
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/Calculator/obj/Debug/netcoreapp2.1/Calculator.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/Calculator/obj/Debug/netcoreapp2.1/Calculator.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/Calculator/obj/Debug/netcoreapp2.1/Calculator.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/Calculator/obj/Debug/netcoreapp2.1/Calculator.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/tdd1/Calculator/obj/Debug/netcoreapp2.1/Calculator.pdb

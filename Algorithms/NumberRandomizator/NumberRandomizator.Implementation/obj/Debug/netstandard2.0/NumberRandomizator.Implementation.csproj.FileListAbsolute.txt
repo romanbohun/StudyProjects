@@ -1,0 +1,9 @@
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/obj/Debug/netstandard2.0/NumberRandomizator.Implementation.csprojAssemblyReference.cache
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/obj/Debug/netstandard2.0/NumberRandomizator.Implementation.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/obj/Debug/netstandard2.0/NumberRandomizator.Implementation.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/obj/Debug/netstandard2.0/NumberRandomizator.Implementation.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/bin/Debug/netstandard2.0/NumberRandomizator.Implementation.deps.json
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/bin/Debug/netstandard2.0/NumberRandomizator.Implementation.dll
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/bin/Debug/netstandard2.0/NumberRandomizator.Implementation.pdb
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/obj/Debug/netstandard2.0/NumberRandomizator.Implementation.dll
+/Volumes/Data/Projects/Study/Algorithms/NumberRandomizator/NumberRandomizator.Implementation/obj/Debug/netstandard2.0/NumberRandomizator.Implementation.pdb

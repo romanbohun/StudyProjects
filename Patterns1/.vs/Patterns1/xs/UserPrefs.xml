@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{1F26D0E9-B4D2-45E4-8F8D-5A5800332DA0}|Default">
+  <MonoDevelop.Ide.ItemProperties.Patterns1 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Patterns1/Program.cs">
+    <Files>
+      <File FileName="Patterns1/Program.cs" Line="24" Column="39" />
+      <File FileName="Patterns1/AbstractFactory/AbstractFactory.cs" Line="103" Column="6" />
+      <File FileName="Patterns1/FactoryMethod/FactoryMethod.cs" Line="81" Column="10" />
+      <File FileName="Patterns1/Singleton/Singleton.cs" Line="55" Column="5" />
+      <File FileName="Patterns1/Decorator/Decorator.cs" Line="123" Column="58" />
+      <File FileName="Patterns1/Iterator/Aggregator.cs" Line="38" Column="44" />
+      <File FileName="Patterns1/Iterator/Iterator.cs" Line="135" Column="6" />
+      <File FileName="Patterns1/Observer/Subject.cs" Line="64" Column="16" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

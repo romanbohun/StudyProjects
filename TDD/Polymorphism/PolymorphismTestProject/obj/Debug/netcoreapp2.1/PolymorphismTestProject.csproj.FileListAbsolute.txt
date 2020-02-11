@@ -1,0 +1,16 @@
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/PolymorphismTestProject.deps.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/PolymorphismTestProject.runtimeconfig.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/PolymorphismTestProject.runtimeconfig.dev.json
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/PolymorphismTestProject.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/PolymorphismTestProject.pdb
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/Polymorphism.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/bin/Debug/netcoreapp2.1/Polymorphism.pdb
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/obj/Debug/netcoreapp2.1/PolymorphismTestProject.csprojResolveAssemblyReference.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/obj/Debug/netcoreapp2.1/PolymorphismTestProject.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/obj/Debug/netcoreapp2.1/PolymorphismTestProject.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/obj/Debug/netcoreapp2.1/PolymorphismTestProject.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/obj/Debug/netcoreapp2.1/PolymorphismTestProject.dll
+/Volumes/Data/Projects/Study/StudyProjects/TDD/Polymorphism/PolymorphismTestProject/obj/Debug/netcoreapp2.1/PolymorphismTestProject.pdb

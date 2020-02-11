@@ -1,0 +1,13 @@
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/bin/Debug/netstandard2.0/CCC.deps.json
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/bin/Debug/netstandard2.0/CCC.dll
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/bin/Debug/netstandard2.0/CCC.pdb
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/CCC.csprojAssemblyReference.cache
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/App.xaml.g.cs
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/MainPage.xaml.g.cs
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/CCC.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/CCC.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/CCC.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/CCC.csproj.Fody.CopyLocal.cache
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/XamlC.stamp
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/CCC.dll
+/Volumes/Data/Projects/Study/StudyProjects/CCC/CCC/obj/Debug/netstandard2.0/CCC.pdb

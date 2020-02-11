@@ -1,0 +1,11 @@
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/bin/Debug/netcoreapp2.1/Patterns1.deps.json
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/bin/Debug/netcoreapp2.1/Patterns1.runtimeconfig.json
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/bin/Debug/netcoreapp2.1/Patterns1.runtimeconfig.dev.json
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/bin/Debug/netcoreapp2.1/Patterns1.dll
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/bin/Debug/netcoreapp2.1/Patterns1.pdb
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/obj/Debug/netcoreapp2.1/Patterns1.csprojResolveAssemblyReference.cache
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/obj/Debug/netcoreapp2.1/Patterns1.csproj.CoreCompileInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/obj/Debug/netcoreapp2.1/Patterns1.AssemblyInfoInputs.cache
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/obj/Debug/netcoreapp2.1/Patterns1.AssemblyInfo.cs
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/obj/Debug/netcoreapp2.1/Patterns1.dll
+/Volumes/Data/Projects/Study/StudyProjects/Patterns1/Patterns1/obj/Debug/netcoreapp2.1/Patterns1.pdb
