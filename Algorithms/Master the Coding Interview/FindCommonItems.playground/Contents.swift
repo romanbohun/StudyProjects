@@ -1,6 +1,6 @@
 import Foundation
 
-func findCommonItems(firstArray: [String], secondArray: [String]) -> [String {
+func findCommonItems(firstArray: [String], secondArray: [String]) -> [String] {
     var set = Set<String>()
     firstArray.forEach { item in
         set.insert(item)
