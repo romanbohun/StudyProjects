@@ -18,17 +18,14 @@ struct DayViewViewModel {
         return dateFormatter
     }()
     
-    private let timeFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = UserDefaults.timeNotation().timeFormat
-        return dateFormatter
-    }()
+    private let timeFormatter = DateFormatter()
     
     var date: String {
         return dateFormatter.string(from: weatherData.time)
     }
     
     var time: String {
+        timeFormatter.dateFormat = UserDefaults.timeNotation().timeFormat
         return timeFormatter.string(from: weatherData.time)
     }
     
