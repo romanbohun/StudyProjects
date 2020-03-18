@@ -62,14 +62,26 @@ namespace AlgorythmProblemSolutions
 
             //RotateArray.Rotate(new int[] { 1, 2, 3, 4, 5, 6, 7 }, 3);
 
-            var result1 = CodifyTest1.solution(1, 8, 3, 2);
-            var result2 = CodifyTest1.solution(2, 3, 3, 2);
-            var result3 = CodifyTest1.solution(6, 2, 4, 7);
+            //var result1 = CodifyTest1.solution(1, 8, 3, 2);
+            //var result2 = CodifyTest1.solution(2, 3, 3, 2);
+            //var result3 = CodifyTest1.solution(6, 2, 4, 7);
 
             //CodifyTest2.solution(268);
             //CodifyTest2.solution(670);
             //CodifyTest2.solution(0);
             //CodifyTest2.solution(-999);
+
+
+            //var myStack1 = new MyStack1();
+            //myStack1.Push(1);
+            //myStack1.Push(2);
+            //myStack1.Push(3);
+            //var result1 = myStack1.Top();
+
+
+            var nums1 = new int[] { 1, 2 };
+            var nums2 = new int[] { 3, 4 };
+            int i = 0;
         }
     }
 }

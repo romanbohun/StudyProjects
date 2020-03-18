@@ -40,10 +40,14 @@
     <Compile Include="CodifyTest.cs" />
     <Compile Include="Easy\RotateArray.cs" />
     <Compile Include="CodifyTest2.cs" />
+    <Compile Include="Easy\ImplementQueueUsingStacks.cs" />
+    <Compile Include="Easy\ImplementStackUsingQueues.cs" />
+    <Compile Include="Hard\MedianOfTwoSortedArrays.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Easy\" />
     <Folder Include="Medium\" />
+    <Folder Include="Hard\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
