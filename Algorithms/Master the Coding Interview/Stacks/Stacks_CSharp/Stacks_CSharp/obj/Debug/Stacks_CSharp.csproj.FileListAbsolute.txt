@@ -1,0 +1,5 @@
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Stacks/Stacks_CSharp/Stacks_CSharp/bin/Debug/Stacks_CSharp.exe
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Stacks/Stacks_CSharp/Stacks_CSharp/bin/Debug/Stacks_CSharp.pdb
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Stacks/Stacks_CSharp/Stacks_CSharp/obj/Debug/Stacks_CSharp.csprojAssemblyReference.cache
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Stacks/Stacks_CSharp/Stacks_CSharp/obj/Debug/Stacks_CSharp.exe
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Stacks/Stacks_CSharp/Stacks_CSharp/obj/Debug/Stacks_CSharp.pdb
