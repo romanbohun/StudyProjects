@@ -1,0 +1,5 @@
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Queues/Queue_CSharp/Queue_CSharp/obj/Debug/Queue_CSharp.csprojAssemblyReference.cache
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Queues/Queue_CSharp/Queue_CSharp/bin/Debug/Queue_CSharp.exe
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Queues/Queue_CSharp/Queue_CSharp/bin/Debug/Queue_CSharp.pdb
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Queues/Queue_CSharp/Queue_CSharp/obj/Debug/Queue_CSharp.exe
+/Volumes/Data/Projects/Study/StudyProjects/Algorithms/Master the Coding Interview/Queues/Queue_CSharp/Queue_CSharp/obj/Debug/Queue_CSharp.pdb

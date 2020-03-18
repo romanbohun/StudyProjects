@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue_CSharp", "Queue_CSharp\Queue_CSharp.csproj", "{F9981B69-31EA-44C2-8BF7-1ACCA80A6F41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9981B69-31EA-44C2-8BF7-1ACCA80A6F41}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{F9981B69-31EA-44C2-8BF7-1ACCA80A6F41}.Debug|anycpu.Build.0 = Debug|anycpu
+		{F9981B69-31EA-44C2-8BF7-1ACCA80A6F41}.Release|anycpu.ActiveCfg = Release|anycpu
+		{F9981B69-31EA-44C2-8BF7-1ACCA80A6F41}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+EndGlobal

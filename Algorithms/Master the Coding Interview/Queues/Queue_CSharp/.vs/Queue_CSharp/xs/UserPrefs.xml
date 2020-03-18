@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{F9981B69-31EA-44C2-8BF7-1ACCA80A6F41}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Queue_CSharp/Program.cs">
+    <Files>
+      <File FileName="Queue_CSharp/Program.cs" Line="68" Column="25" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Queue_CSharp" expanded="True">
+            <Node name="Queue_CSharp" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|anycpu" />
+  <MonoDevelop.Ide.ItemProperties.Queue__CSharp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
