@@ -8,6 +8,8 @@
 
 import Foundation
 
-protocol LocationServiceProtocol {
-    
+typealias LocationServiceCompletionHandler = ([Location], Error?) -> Void
+
+protocol LocationService {
+    func geocode(addressString: String?, completionHandler: @escaping LocationServiceCompletionHandler)
 }

@@ -503,9 +503,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="1SC-03-Wyq" id="7zs-TB-hBb"/>
-                                    </connections>
                                 </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationCell" id="3n7-tm-inI" customClass="LocationTableViewCell" customModule="Cloudy" customModuleProvider="target">
@@ -538,13 +535,18 @@
                                     <outlet property="delegate" destination="1SC-03-Wyq" id="p5h-ju-EYh"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="e6w-x4-rzT">
+                                <rect key="frame" x="177.5" y="313.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kC8-yI-yKo" firstAttribute="top" secondItem="3Mb-Ss-OAB" secondAttribute="top" id="Fog-z0-vv1"/>
                             <constraint firstItem="kC8-yI-yKo" firstAttribute="leading" secondItem="3Mb-Ss-OAB" secondAttribute="leading" id="KtM-He-7Xm"/>
+                            <constraint firstItem="e6w-x4-rzT" firstAttribute="centerY" secondItem="3Mb-Ss-OAB" secondAttribute="centerY" id="Qy6-2g-vRP"/>
                             <constraint firstItem="UXA-Nw-IDn" firstAttribute="top" secondItem="kC8-yI-yKo" secondAttribute="bottom" id="TX2-mX-WjC"/>
                             <constraint firstAttribute="trailing" secondItem="kC8-yI-yKo" secondAttribute="trailing" id="t4j-NW-1vE"/>
+                            <constraint firstItem="e6w-x4-rzT" firstAttribute="centerX" secondItem="3Mb-Ss-OAB" secondAttribute="centerX" id="wJD-GQ-Ja0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="T8v-SB-W94">
@@ -555,6 +557,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="e6w-x4-rzT" id="Dsk-FN-778"/>
                         <outlet property="searchBar" destination="K22-9s-gOl" id="lND-vd-kdm"/>
                         <outlet property="tableView" destination="kC8-yI-yKo" id="JTj-z6-wjs"/>
                     </connections>
