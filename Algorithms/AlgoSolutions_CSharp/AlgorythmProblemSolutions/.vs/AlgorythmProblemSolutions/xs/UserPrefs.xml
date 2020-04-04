@@ -1,24 +1,25 @@
 ﻿<Properties StartupConfiguration="{353E444D-E8EF-4ED1-BE28-E06325403283}|Default">
   <MonoDevelop.Ide.ItemProperties.AlgorythmProblemSolutions PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AlgorythmProblemSolutions/CodifyTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AlgorythmProblemSolutions/CodifyTest2.cs">
     <Files>
-      <File FileName="AlgorythmProblemSolutions/Program.cs" Line="67" Column="60" />
+      <File FileName="AlgorythmProblemSolutions/Program.cs" Line="84" Column="23" />
       <File FileName="AlgorythmProblemSolutions/Medium/LinkedList_TwoSum.cs" />
       <File FileName="AlgorythmProblemSolutions/Medium/LongestSubstringWithoutRepeatingCharacters.cs" />
       <File FileName="AlgorythmProblemSolutions/Easy/PalindromeNumber.cs" />
       <File FileName="AlgorythmProblemSolutions/Easy/SameTree.cs" />
-      <File FileName="AlgorythmProblemSolutions/CodifyTest.cs" Line="36" Column="14" />
+      <File FileName="AlgorythmProblemSolutions/CodifyTest.cs" />
       <File FileName="AlgorythmProblemSolutions/Easy/RotateArray.cs" />
-      <File FileName="AlgorythmProblemSolutions/CodifyTest2.cs" />
+      <File FileName="AlgorythmProblemSolutions/CodifyTest2.cs" Line="41" Column="1" />
+      <File FileName="AlgorythmProblemSolutions/Easy/ImplementQueueUsingStacks.cs" />
+      <File FileName="AlgorythmProblemSolutions/Easy/ImplementStackUsingQueues.cs" />
+      <File FileName="AlgorythmProblemSolutions/Hard/MedianOfTwoSortedArrays.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="AlgorythmProblemSolutions" expanded="True">
             <Node name="AlgorythmProblemSolutions" expanded="True">
-              <Node name="Easy" expanded="True" />
-              <Node name="Properties" expanded="True" />
-              <Node name="CodifyTest.cs" selected="True" />
+              <Node name="CodifyTest2.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -33,7 +34,7 @@
       <Breakpoint file="/Volumes/Data/Projects/Study/StudyProjects/Algorithms/AlgoSolutions_CSharp/AlgorythmProblemSolutions/AlgorythmProblemSolutions/Easy/PalindromeNumber.cs" relfile="AlgorythmProblemSolutions/Easy/PalindromeNumber.cs" line="9" column="1" />
       <Breakpoint file="/Volumes/Data/Projects/Study/StudyProjects/Algorithms/AlgoSolutions_CSharp/AlgorythmProblemSolutions/AlgorythmProblemSolutions/Easy/pkrglotf.ipi~" relfile="AlgorythmProblemSolutions/Easy/pkrglotf.ipi~" line="62" column="1" />
       <Breakpoint file="/Volumes/Data/Projects/Study/StudyProjects/Algorithms/AlgoSolutions_CSharp/AlgorythmProblemSolutions/AlgorythmProblemSolutions/Easy/RotateArray.cs" relfile="AlgorythmProblemSolutions/Easy/RotateArray.cs" line="20" column="1" />
-      <Breakpoint file="/Volumes/Data/Projects/Study/StudyProjects/Algorithms/AlgoSolutions_CSharp/AlgorythmProblemSolutions/AlgorythmProblemSolutions/Program.cs" relfile="AlgorythmProblemSolutions/Program.cs" line="73" column="1" />
+      <Breakpoint file="/Volumes/Data/Projects/Study/StudyProjects/Algorithms/AlgoSolutions_CSharp/AlgorythmProblemSolutions/AlgorythmProblemSolutions/Program.cs" relfile="AlgorythmProblemSolutions/Program.cs" line="84" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
