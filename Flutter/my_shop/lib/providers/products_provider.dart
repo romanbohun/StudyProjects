@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../providers/product_provider.dart';
 import '../models/product.dart';
-import '../providers/enums/filter_options.dart';
 
 class ProductsProvider with ChangeNotifier {
   List<ProductProvider> _items = [
