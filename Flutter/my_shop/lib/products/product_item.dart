@@ -11,8 +11,25 @@ class ProductItem extends StatelessWidget {
     final product = Provider.of<ProductProvider>(context, listen: false);
     final cartProvider = Provider.of<CartProvider>(context, listen: false);
 
+    void undoHandler() {
+      cartProvider.removeSingleItem(product.id);
+    }
+
     void addItemHandler() {
       cartProvider.addItem(product.id, product.price, product.title);
+      Scaffold.of(context).hideCurrentSnackBar();
+      Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              '${product.title} added to the cart',
+            ),
+            duration: Duration(seconds: 2),
+            action: SnackBarAction(
+              label: 'UNDO',
+              onPressed: undoHandler,
+            ),
+          )
+      );
     }
 
     void toggleFavoriteHandler() {
