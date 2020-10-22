@@ -2,12 +2,16 @@ import '../../cart/cart_screen.dart';
 import '../../orders/orders_screen.dart';
 import '../../products/product_details_screen.dart';
 import '../../products/products_overview_screen.dart';
+import '../../products/user_products_screen.dart';
+import '../../products/user_product_edit_screen.dart';
 
 enum RouteNames {
   root,
   productDetails,
   cart,
   orders,
+  userProducts,
+  editUserProduct
 }
 
 extension RoutesNameExtension on RouteNames {
@@ -22,6 +26,10 @@ extension RoutesNameExtension on RouteNames {
         return '/cart';
       case RouteNames.orders:
         return '/orders';
+      case RouteNames.userProducts:
+        return '/user-products';
+      case RouteNames.editUserProduct:
+        return '/edit-user-product';
     }
 
     return '';
@@ -34,5 +42,7 @@ class Routes {
     RouteNames.productDetails.routePath: (ctx) => ProductDetailsScreen(),
     RouteNames.cart.routePath: (ctx) => CartScreen(),
     RouteNames.orders.routePath: (ctx) => OrdersScreen(),
+    RouteNames.userProducts.routePath: (ctx) => UserProductsScreen(),
+    RouteNames.editUserProduct.routePath: (ctx) => UserProductEditScreen(),
   };
 }
