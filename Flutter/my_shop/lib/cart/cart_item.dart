@@ -14,6 +14,39 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    void removeItemHandler(DismissDirection direction) {
+      Provider.of<CartProvider>(context, listen: false).removeItem(productId);
+    }
+
+    void onNegativeActionHandler() {
+      Navigator.of(context).pop(false);
+    }
+
+    void onPosititveActionHandler() {
+      Navigator.of(context).pop(true);
+    }
+
+    Future<bool> confirmRemoving(DismissDirection direction) {
+      return showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text('Are you sure?'),
+            content: Text('Do you want to remove item  from the cart?'),
+            actions: [
+              FlatButton(
+                child: Text('No'),
+                onPressed: onNegativeActionHandler,
+              ),
+              FlatButton(
+                child: Text('Yes'),
+                onPressed: onPosititveActionHandler,
+              )
+            ],
+          )
+      );
+    }
+
     return Dismissible(
       key: ValueKey(id),
       background: Container(
@@ -27,30 +60,29 @@ class CartItem extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20),
       ),
       direction: DismissDirection.endToStart,
-      onDismissed: (direction) {
-        Provider.of<CartProvider>(context, listen: false).removeItem(productId);
-      },
+      confirmDismiss: confirmRemoving,
+      onDismissed: removeItemHandler,
       child: Card(
-        margin: EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 4,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: ListTile(
-            leading: CircleAvatar(
-              child: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: FittedBox(
+          margin: EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 4,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: ListTile(
+              leading: CircleAvatar(
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: FittedBox(
                     child: Text('\$$price'),
+                  ),
                 ),
               ),
+              title: Text(title),
+              subtitle: Text('Total: \$${quantity * price}'),
+              trailing: Text('$quantity x'),
             ),
-            title: Text(title),
-            subtitle: Text('Total: \$${quantity * price}'),
-            trailing: Text('$quantity x'),
-          ),
-        )
+          )
       ),
     );
   }
