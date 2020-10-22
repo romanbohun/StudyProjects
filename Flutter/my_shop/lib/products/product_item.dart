@@ -10,6 +10,22 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<ProductProvider>(context, listen: false);
     final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
+    void addItemHandler() {
+      cartProvider.addItem(product.id, product.price, product.title);
+    }
+
+    void toggleFavoriteHandler() {
+      product.toggleFavorite();
+    }
+
+    void navigateToDetailsHandler() {
+      Navigator.of(context).pushNamed(
+          RouteNames.productDetails.routePath,
+          arguments: product.id
+      );
+    }
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
       child: GridTile(
@@ -18,21 +34,14 @@ class ProductItem extends StatelessWidget {
             product.imageUrl,
             fit: BoxFit.cover,
           ),
-          onTap: () {
-            Navigator.of(context).pushNamed(
-                RouteNames.productDetails.routePath,
-                arguments: product.id
-            );
-          },
+          onTap: navigateToDetailsHandler,
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           leading: Consumer<ProductProvider>(
             builder: (ctx, product, _) => IconButton(
               icon: Icon(product.isFavorite ? Icons.favorite : Icons.favorite_border),
-              onPressed: () {
-                product.toggleFavorite();
-              },
+              onPressed: toggleFavoriteHandler,
               color: Theme.of(context).accentColor,
             ),
           ),
@@ -42,9 +51,7 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-              cartProvider.addItem(product.id, product.price, product.title);
-            },
+            onPressed: addItemHandler,
             color: Theme.of(context).accentColor,
           ),
         ),
