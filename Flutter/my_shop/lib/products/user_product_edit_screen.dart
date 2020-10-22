@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_shop/providers/products_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/product.dart';
+import '../providers/products_provider.dart';
 
 class UserProductEditScreen extends StatefulWidget {
   @override
@@ -15,6 +15,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
   final _imageUrlFocuseNode = FocusNode();
   final _imageUrlController = TextEditingController();
   final _form = GlobalKey<FormState>();
+  var _isInit = false;
   var _product = Product(
     id: null,
     title: '',
@@ -57,6 +58,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
       price: _product.price,
       description: _product.description,
       imageUrl: _product.imageUrl,
+      isFavorite: _product.isFavorite,
     );
   }
 
@@ -75,6 +77,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
       title: _product.title,
       description: _product.description,
       imageUrl: _product.imageUrl,
+      isFavorite: _product.isFavorite,
     );
   }
 
@@ -100,6 +103,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
       title: _product.title,
       price: _product.price,
       imageUrl: _product.imageUrl,
+      isFavorite: _product.isFavorite,
     );
   }
 
@@ -121,6 +125,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
       title: _product.title,
       price: _product.price,
       description: _product.description,
+      isFavorite: _product.isFavorite,
     );
   }
 
@@ -145,10 +150,39 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
   void _saveHandler() {
     if (_form.currentState.validate()) {
       _form.currentState.save();
-      Provider.of<ProductsProvider>(context, listen: false)
-          .addProduct(_product);
+
+      if (_product.id == null) {
+        Provider.of<ProductsProvider>(context, listen: false)
+            .addProduct(_product);
+      } else {
+        Provider.of<ProductsProvider>(context, listen: false)
+            .updateProduct(_product);
+      }
+
       Navigator.of(context).pop();
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (!_isInit) {
+      var productId = ModalRoute.of(context).settings.arguments as String;
+      if (productId != null) {
+        final productProvider = Provider.of<ProductsProvider>(context, listen: false).findById(productId);
+        _product = Product(
+          id: productProvider.id,
+          title: productProvider.title,
+          description: productProvider.description,
+          price: productProvider.price,
+          imageUrl: productProvider.imageUrl,
+          isFavorite: productProvider.isFavorite
+        );
+
+        _imageUrlController.text = _product.imageUrl;
+      }
+      _isInit = !_isInit;
+    }
+    super.didChangeDependencies();
   }
 
   @override
@@ -170,6 +204,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
           child: ListView(
             children: [
               TextFormField(
+                initialValue: _product.title,
                 decoration: InputDecoration(
                   labelText: 'Title',
                 ),
@@ -181,6 +216,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
                 validator: _titleValidator,
               ),
               TextFormField(
+                initialValue: _product.price.toString(),
                 decoration: InputDecoration(
                   labelText: 'Price',
                 ),
@@ -194,6 +230,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
                 validator: _priceValidator,
               ),
               TextFormField(
+                initialValue: _product.description,
                 decoration: InputDecoration(
                   labelText: 'Description',
                 ),
@@ -227,6 +264,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
                   ),
                   Expanded(
                     child: TextFormField(
+                      // initialValue: _product.imageUrl,
                       decoration: InputDecoration(
                         labelText: 'Image URL',
                       ),

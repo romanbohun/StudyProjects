@@ -14,7 +14,7 @@ class UserProductsScreen extends StatelessWidget {
     void addHandler() {
       Navigator.of(context).pushNamed(RouteNames.editUserProduct.routePath);
     }
-    
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Products'),
@@ -34,7 +34,11 @@ class UserProductsScreen extends StatelessWidget {
               var product = productsProvider.items[index];
               return Column(
                 children: [
-                  UserProductItem(product.title, product.imageUrl),
+                  UserProductItem(
+                    id: product.id,
+                    title: product.title,
+                    imageUrl: product.imageUrl,
+                  ),
                   Divider()
                 ],
               );

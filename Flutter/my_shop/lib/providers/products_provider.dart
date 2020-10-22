@@ -72,4 +72,17 @@ class ProductsProvider with ChangeNotifier {
     return _items.firstWhere((element) => element.id == id);
   }
 
+  void updateProduct(Product value) {
+    final foundIndex = _items.indexWhere((element) => element.id == value.id);
+    if (foundIndex >= 0) {
+      _items[foundIndex] = ProductProvider(value);
+      notifyListeners();
+    }
+  }
+
+  void deleteProduct(String id) {
+    _items.removeWhere((element) => element.id == id);
+    notifyListeners();
+  }
+
 }
