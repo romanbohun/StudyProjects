@@ -19,13 +19,14 @@ class ProductService extends FirebaseService {
         body: product.toJson()
     ).then((value) {
       if (value.statusCode != 200) {
-        return Result(success: null, failure: value.reasonPhrase);
+        // A user-oriented error message should be provided here
+        return Result(success: null, failure: value.reasonPhrase.toString());
       }
       final obtainedId = json.decode(value.body)['name'];
       return Result(success: Product.withId(obtainedId, product), failure: null);
     })
     .catchError((error) {
-      return Result(success: null, failure: error);
+      return Result(success: null, failure: 'Something went wrong during the request. Please try again later!');
     });
   }
 }

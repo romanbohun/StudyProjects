@@ -16,6 +16,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
   final _imageUrlController = TextEditingController();
   final _form = GlobalKey<FormState>();
   var _isInit = false;
+  var _isRequestInProgress = false;
   var _product = Product(
     id: null,
     title: '',
@@ -151,15 +152,43 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
     if (_form.currentState.validate()) {
       _form.currentState.save();
 
+      setState(() {
+        _isRequestInProgress = true;
+      });
       if (_product.id == null) {
         Provider.of<ProductsProvider>(context, listen: false)
-            .addProduct(_product);
+            .addProduct(_product)
+            .then((result) {
+          if (result.failure != null) {
+            showDialog(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                title: Text('Error'),
+                content: Text(result.failure.toString()),
+                actions: [
+                  FlatButton(
+                    child: Text('Ok'),
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                  )
+                ],
+              ),
+            );
+          } else {
+            Navigator.of(context).pop();
+          }
+
+          setState(() {
+            _isRequestInProgress = false;
+          });
+        });
       } else {
         Provider.of<ProductsProvider>(context, listen: false)
             .updateProduct(_product);
+        Navigator.of(context).pop();
+        _isRequestInProgress = false;
       }
-
-      Navigator.of(context).pop();
     }
   }
 
@@ -197,7 +226,11 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
           )
         ],
       ),
-      body: Padding(
+      body: _isRequestInProgress
+          ? Center(
+        child: CircularProgressIndicator(),
+      )
+          : Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _form,
