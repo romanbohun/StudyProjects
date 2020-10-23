@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/providers/products_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../products/products_grid.dart';
@@ -16,6 +17,35 @@ class ProductOverviewScreen extends StatefulWidget {
 
 class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   var _currentFilterOption = FilterOptions.All;
+  var _isInit = false;
+  var _isDataLoadingInProgress = false;
+
+  @override
+  void initState() {
+    // Two approaches how to fetch data during screen initialization
+    // Provider.of<ProductsProvider>(context, listen: false).fetchAndSetProducts();
+    // Future.delayed(Duration.zero).then((_) {
+    //   Provider.of<ProductsProvider>(context).fetchAndSetProducts();
+    // });
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (!_isInit) {
+      setState(() {
+        _isDataLoadingInProgress = true;
+      });
+      Provider.of<ProductsProvider>(context).fetchAndSetProducts()
+          .then((_) {
+        setState(() {
+          _isDataLoadingInProgress = false;
+        });
+      });
+      _isInit = true;
+    }
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +85,11 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
         ],
       ),
       drawer: AppDrawer(),
-      body: ProductsGrid(_currentFilterOption),
+      body: _isDataLoadingInProgress
+          ? Center(
+        child: CircularProgressIndicator(),
+      )
+          : ProductsGrid(_currentFilterOption),
     );
   }
 }

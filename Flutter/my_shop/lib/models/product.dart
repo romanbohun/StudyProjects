@@ -18,13 +18,13 @@ class Product  with ChangeNotifier {
     this.isFavorite = false
   });
 
-  Product.fromJson(Map<String, dynamic> json) :
-        id = json['id'],
+  Product.fromJson(String id, Map<String, dynamic> json) :
+        id = id,
         title = json['title'],
         description = json['description'],
-        price = double.parse(json['price']),
+        price = json['price'] as double,
         imageUrl = json['imageUrl'],
-        isFavorite = json['isFavorite'];
+        isFavorite = json['isFavorite'] as bool;
 
   Product.withId(String id, Product product) :
         id = id,

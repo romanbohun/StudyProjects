@@ -79,6 +79,17 @@ class ProductsProvider with ChangeNotifier {
     });
   }
 
+  Future<void> fetchAndSetProducts() async {
+     final result = await _productService.fetchProducts();
+     if (result.failure == null) {
+       _items.clear();
+       result.success.forEach((product) {
+          _items.add(ProductProvider(product));
+       });
+       notifyListeners();
+     }
+  }
+
   ProductProvider findById(String id) {
     return _items.firstWhere((element) => element.id == id);
   }
