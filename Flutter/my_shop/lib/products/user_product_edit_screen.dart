@@ -170,12 +170,12 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
       if (productId != null) {
         final productProvider = Provider.of<ProductsProvider>(context, listen: false).findById(productId);
         _product = Product(
-          id: productProvider.id,
-          title: productProvider.title,
-          description: productProvider.description,
-          price: productProvider.price,
-          imageUrl: productProvider.imageUrl,
-          isFavorite: productProvider.isFavorite
+            id: productProvider.id,
+            title: productProvider.title,
+            description: productProvider.description,
+            price: productProvider.price,
+            imageUrl: productProvider.imageUrl,
+            isFavorite: productProvider.isFavorite
         );
 
         _imageUrlController.text = _product.imageUrl;

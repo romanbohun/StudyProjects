@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class Product  with ChangeNotifier {
@@ -16,4 +17,30 @@ class Product  with ChangeNotifier {
     @required this.imageUrl,
     this.isFavorite = false
   });
+
+  Product.fromJson(Map<String, dynamic> json) :
+        id = json['id'],
+        title = json['title'],
+        description = json['description'],
+        price = double.parse(json['price']),
+        imageUrl = json['imageUrl'],
+        isFavorite = json['isFavorite'];
+
+  Product.withId(String id, Product product) :
+        id = id,
+        title = product.title,
+        description = product.description,
+        price = product.price,
+        imageUrl = product.imageUrl,
+        isFavorite = product.isFavorite;
+
+
+  String toJson() => json.encode({
+    'title': title,
+    'description': description,
+    'price': price,
+    'imageUrl': imageUrl,
+    'isFavorite': isFavorite,
+  });
+
 }

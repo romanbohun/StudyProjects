@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../providers/product_provider.dart';
 import '../models/product.dart';
+import '../common/classes/result.dart';
+import '../services/product_service.dart';
 
 class ProductsProvider with ChangeNotifier {
+  final _productService = ProductService();
+
   List<ProductProvider> _items = [
     ProductProvider(
         Product(
@@ -55,17 +60,23 @@ class ProductsProvider with ChangeNotifier {
     return _items.where((element) => element.isFavorite).toList();
   }
 
-  void addProduct(Product value) {
-    final product = Product(
-      id: DateTime.now().toString(),
-      title: value.title,
-      price: value.price,
-      description: value.description,
-      imageUrl: value.imageUrl
-    );
+  Future<Result<Product, String>> addProduct(Product value) {
+    return _productService.add(value)
+        .then((result) {
+      if (result.failure == null) {
+        final product = Product(
+            id: DateTime.now().toString(),
+            title: value.title,
+            price: value.price,
+            description: value.description,
+            imageUrl: value.imageUrl
+        );
 
-    _items.add(ProductProvider(product));
-    notifyListeners();
+        _items.add(ProductProvider(product));
+        notifyListeners();
+      }
+      return result;
+    });
   }
 
   ProductProvider findById(String id) {
