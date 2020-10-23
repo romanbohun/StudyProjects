@@ -148,7 +148,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
     return null;
   }
 
-  void _saveHandler() {
+  Future<void> _saveHandler() async {
     if (_form.currentState.validate()) {
       _form.currentState.save();
 
@@ -156,33 +156,34 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
         _isRequestInProgress = true;
       });
       if (_product.id == null) {
-        Provider.of<ProductsProvider>(context, listen: false)
-            .addProduct(_product)
-            .then((result) {
+        try {
+          final result = await Provider.of<ProductsProvider>(context, listen: false)
+              .addProduct(_product);
           if (result.failure != null) {
-            showDialog(
+            await showDialog(
               context: context,
-              builder: (ctx) => AlertDialog(
-                title: Text('Error'),
-                content: Text(result.failure.toString()),
-                actions: [
-                  FlatButton(
-                    child: Text('Ok'),
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                    },
-                  )
-                ],
-              ),
+              builder: (ctx) =>
+                  AlertDialog(
+                    title: Text('Error'),
+                    content: Text(result.failure.toString()),
+                    actions: [
+                      FlatButton(
+                        child: Text('Ok'),
+                        onPressed: () {
+                          Navigator.of(ctx).pop();
+                        },
+                      )
+                    ],
+                  ),
             );
           } else {
             Navigator.of(context).pop();
           }
-
+        } finally {
           setState(() {
             _isRequestInProgress = false;
           });
-        });
+        }
       } else {
         Provider.of<ProductsProvider>(context, listen: false)
             .updateProduct(_product);

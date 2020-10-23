@@ -13,20 +13,21 @@ class ProductService extends FirebaseService {
     _currentUrl = super.baseUrl + '/products.json';
   }
 
-  Future<Result<Product, String>> add(Product product) {
-    return http.post(
-        _currentUrl,
-        body: product.toJson()
-    ).then((value) {
-      if (value.statusCode != 200) {
+  Future<Result<Product, String>> add(Product product) async {
+    try {
+      final response = await http.post(
+          _currentUrl,
+          body: product.toJson()
+      );
+      if (response.statusCode != 200) {
         // A user-oriented error message should be provided here
-        return Result(success: null, failure: value.reasonPhrase.toString());
+        return Result(success: null, failure: response.reasonPhrase.toString());
       }
-      final obtainedId = json.decode(value.body)['name'];
+      final obtainedId = json.decode(response.body)['name'];
       return Result(success: Product.withId(obtainedId, product), failure: null);
-    })
-    .catchError((error) {
+
+    } catch (error) {
       return Result(success: null, failure: 'Something went wrong during the request. Please try again later!');
-    });
+    }
   }
 }
