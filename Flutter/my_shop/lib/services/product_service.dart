@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:my_shop/common/errors/p_error.dart';
 
+import '../common/errors/p_error.dart';
 import '../common/classes/result.dart';
 import '../services/firebase_service.dart';
 import '../models/product.dart';
@@ -22,20 +22,12 @@ class ProductService extends FirebaseService {
     return '$_currentUrl/$id.json';
   }
 
-  Result _errorRequestResult(http.Response response) {
-    return Result(success: null, failure: PError(message: response.reasonPhrase.toString()));
-  }
-
-  Result _errorDuringRequest(Error error) {
-    return Result(success: null, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
-  }
-
-  Future<Result<List<Product>>> fetchProducts() async {
+  Future<Result<List<Product>>> fetch() async {
     try {
       final url = _productsUrl();
       final response = await http.get(url);
       if (response.statusCode != 200) {
-        return _errorRequestResult(response);
+        return errorRequestResult(response);
       }
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Product> loadedProducts = [];
@@ -57,7 +49,7 @@ class ProductService extends FirebaseService {
       );
       if (response.statusCode != 200) {
         // A user-oriented error message should be provided here
-        return _errorRequestResult(response);
+        return errorRequestResult(response);
       }
       final obtainedId = json.decode(response.body)['name'];
       return Result(success: Product.withId(obtainedId, product), failure: null);
@@ -77,7 +69,7 @@ class ProductService extends FirebaseService {
 
       if (response.statusCode != 200) {
         // A user-oriented error message should be provided here
-        return _errorRequestResult(response);
+        return errorRequestResult(response);
       }
       return Result(success: true, failure: null);
     } catch (error) {
@@ -92,7 +84,7 @@ class ProductService extends FirebaseService {
 
       if (response.statusCode != 200) {
         // A user-oriented error message should be provided here
-        return _errorRequestResult(response);
+        return errorRequestResult(response);
       }
       return Result(success: true, failure: null);
     } catch (error) {
@@ -112,7 +104,7 @@ class ProductService extends FirebaseService {
 
       if (response.statusCode != 200) {
         // A user-oriented error message should be provided here
-        return _errorRequestResult(response);
+        return errorRequestResult(response);
       }
       return Result(success: true, failure: null);
     } catch (error) {

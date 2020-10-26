@@ -80,7 +80,7 @@ class ProductsProvider with ChangeNotifier {
   }
 
   Future<Result<bool>> fetchAndSetProducts() async {
-    return await _productService.fetchProducts()
+    return await _productService.fetch()
       .then((result) {
       if (result.failure == null) {
         _items.clear();
