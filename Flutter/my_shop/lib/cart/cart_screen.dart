@@ -82,10 +82,10 @@ class OrderButton extends StatefulWidget {
 }
 
 class _OrderButtonState extends State<OrderButton> {
+  var _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    var _isLoading = false;
-
     final scaffold = Scaffold.of(context);
 
     Future<void> orderNowButtonHandler() async {
@@ -114,7 +114,7 @@ class _OrderButtonState extends State<OrderButton> {
     }
 
     return FlatButton(
-      child: Text(
+      child: _isLoading ? CircularProgressIndicator() : Text(
         'ORDER NOW',
       ),
       textColor: Theme.of(context).primaryColor,
