@@ -79,27 +79,37 @@ class ProductsProvider with ChangeNotifier {
     });
   }
 
-  Future<void> fetchAndSetProducts() async {
-     final result = await _productService.fetchProducts();
-     if (result.failure == null) {
-       _items.clear();
-       result.success.forEach((product) {
+  Future<Result<bool, String>> fetchAndSetProducts() async {
+    return await _productService.fetchProducts()
+      .then((result) {
+      if (result.failure == null) {
+        _items.clear();
+        result.success.forEach((product) {
           _items.add(ProductProvider(product));
-       });
-       notifyListeners();
-     }
+        });
+        notifyListeners();
+        return Result(success: true, failure: null);
+      }
+      return Result(success: false, failure: result.failure);
+    });
   }
 
   ProductProvider findById(String id) {
     return _items.firstWhere((element) => element.id == id);
   }
 
-  void updateProduct(Product value) {
-    final foundIndex = _items.indexWhere((element) => element.id == value.id);
-    if (foundIndex >= 0) {
-      _items[foundIndex] = ProductProvider(value);
-      notifyListeners();
-    }
+  Future<Result<bool, String>> updateProduct(Product value) async {
+    return _productService.update(value)
+        .then((result) {
+      if (result.success) {
+        final foundIndex = _items.indexWhere((element) => element.id == value.id);
+        if (foundIndex >= 0) {
+          _items[foundIndex] = ProductProvider(value);
+          notifyListeners();
+        }
+      }
+      return result;
+    });
   }
 
   void deleteProduct(String id) {

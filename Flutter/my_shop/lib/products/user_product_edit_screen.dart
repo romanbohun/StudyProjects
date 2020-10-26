@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/common/classes/result.dart';
 import 'package:provider/provider.dart';
 
 import '../models/product.dart';
@@ -148,6 +149,25 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
     return null;
   }
 
+  Future<void> _showDialogForResult(Result result) {
+    return showDialog(
+      context: context,
+      builder: (ctx) =>
+          AlertDialog(
+            title: Text('Error'),
+            content: Text(result.failure.toString()),
+            actions: [
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+              )
+            ],
+          ),
+    );
+  }
+
   Future<void> _saveHandler() async {
     if (_form.currentState.validate()) {
       _form.currentState.save();
@@ -160,22 +180,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
           final result = await Provider.of<ProductsProvider>(context, listen: false)
               .addProduct(_product);
           if (result.failure != null) {
-            await showDialog(
-              context: context,
-              builder: (ctx) =>
-                  AlertDialog(
-                    title: Text('Error'),
-                    content: Text(result.failure.toString()),
-                    actions: [
-                      FlatButton(
-                        child: Text('Ok'),
-                        onPressed: () {
-                          Navigator.of(ctx).pop();
-                        },
-                      )
-                    ],
-                  ),
-            );
+            await _showDialogForResult(result);
           } else {
             Navigator.of(context).pop();
           }
@@ -185,10 +190,17 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
           });
         }
       } else {
-        Provider.of<ProductsProvider>(context, listen: false)
+        final result = await Provider.of<ProductsProvider>(context, listen: false)
             .updateProduct(_product);
-        Navigator.of(context).pop();
-        _isRequestInProgress = false;
+
+        if (result.success) {
+          Navigator.of(context).pop();
+        } else {
+            await _showDialogForResult(result);
+        }
+        setState(() {
+          _isRequestInProgress = false;
+        });
       }
     }
   }
