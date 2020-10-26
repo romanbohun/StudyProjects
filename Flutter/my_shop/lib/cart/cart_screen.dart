@@ -22,14 +22,6 @@ class CartScreen extends StatelessWidget {
       );
     }
 
-    void orderNowButtonHandler() {
-      Provider.of<OrdersProvider>(context, listen: false).addOrder(
-        cartProvider.items.values.toList(),
-        cartProvider.totalAmount,
-      );
-      cartProvider.clear();
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Cart'),
@@ -57,13 +49,7 @@ class CartScreen extends StatelessWidget {
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
-                  FlatButton(
-                    child: Text(
-                      'ORDER NOW',
-                    ),
-                    textColor: Theme.of(context).primaryColor,
-                    onPressed: orderNowButtonHandler,
-                  )
+                  OrderButton(cartProvider: cartProvider)
                 ],
               ),
             ),
@@ -79,6 +65,62 @@ class CartScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class OrderButton extends StatefulWidget {
+  const OrderButton({
+    Key key,
+    @required this.cartProvider,
+  }) : super(key: key);
+
+  final CartProvider cartProvider;
+
+  @override
+  _OrderButtonState createState() => _OrderButtonState();
+}
+
+class _OrderButtonState extends State<OrderButton> {
+  @override
+  Widget build(BuildContext context) {
+    var _isLoading = false;
+
+    final scaffold = Scaffold.of(context);
+
+    Future<void> orderNowButtonHandler() async {
+      setState(() {
+        _isLoading = true;
+      });
+
+      final result = await Provider.of<OrdersProvider>(context, listen: false).addOrder(
+        widget.cartProvider.items.values.toList(),
+        widget.cartProvider.totalAmount,
+      );
+
+      if (result.failure != null) {
+        scaffold.hideCurrentSnackBar();
+        scaffold.showSnackBar(
+            SnackBar(
+              content: Text(result.failure.message),
+            )
+        );
+      } else {
+        widget.cartProvider.clear();
+      }
+      setState(() {
+        _isLoading = false;
+      });
+    }
+
+    return FlatButton(
+      child: Text(
+        'ORDER NOW',
+      ),
+      textColor: Theme.of(context).primaryColor,
+      onPressed: (widget.cartProvider.totalAmount <= 0 || _isLoading == true) ?
+      null :
+      orderNowButtonHandler,
     );
   }
 }

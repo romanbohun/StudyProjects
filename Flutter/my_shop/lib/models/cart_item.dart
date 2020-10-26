@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class CartItem {
   final String id;
   final String title;
@@ -10,4 +12,12 @@ class CartItem {
     this.price,
     this.quantity
   });
+
+  String toJson() => json.encode({
+    'id': id,
+    'title': title,
+    'price': price,
+    'quantity': quantity
+  });
+
 }

@@ -64,15 +64,15 @@ class ProductsProvider with ChangeNotifier {
     return _productService.add(value)
         .then((result) {
       if (result.failure == null) {
-        final product = Product(
-            id: DateTime.now().toString(),
-            title: value.title,
-            price: value.price,
-            description: value.description,
-            imageUrl: value.imageUrl
-        );
+        // final product = Product(
+        //     id: DateTime.now().toString(),
+        //     title: value.title,
+        //     price: value.price,
+        //     description: value.description,
+        //     imageUrl: value.imageUrl
+        // );
 
-        _items.add(ProductProvider(product));
+        _items.add(ProductProvider(result.success));
         notifyListeners();
       }
       return result;
