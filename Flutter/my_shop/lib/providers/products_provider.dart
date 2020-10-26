@@ -63,34 +63,25 @@ class ProductsProvider with ChangeNotifier {
   Future<Result<Product>> addProduct(Product value) {
     return _productService.add(value)
         .then((result) {
-      if (result.failure == null) {
-        // final product = Product(
-        //     id: DateTime.now().toString(),
-        //     title: value.title,
-        //     price: value.price,
-        //     description: value.description,
-        //     imageUrl: value.imageUrl
-        // );
-
-        _items.add(ProductProvider(result.success));
+      if (result.success) {
+        _items.add(ProductProvider(result.data));
         notifyListeners();
       }
       return result;
     });
   }
 
-  Future<Result<bool>> fetchAndSetProducts() async {
+  Future<Result> fetchAndSetProducts() async {
     return await _productService.fetch()
       .then((result) {
-      if (result.failure == null) {
+      if (result.success) {
         _items.clear();
-        result.success.forEach((product) {
+        result.data.forEach((product) {
           _items.add(ProductProvider(product));
         });
         notifyListeners();
-        return Result(success: true, failure: null);
       }
-      return Result(success: false, failure: result.failure);
+      return result;
     });
   }
 
@@ -98,7 +89,7 @@ class ProductsProvider with ChangeNotifier {
     return _items.firstWhere((element) => element.id == id);
   }
 
-  Future<Result<bool>> updateProduct(Product value) async {
+  Future<Result> updateProduct(Product value) async {
     return await _productService.update(value)
         .then((result) {
       if (result.success) {
@@ -112,7 +103,7 @@ class ProductsProvider with ChangeNotifier {
     });
   }
 
-  Future<Result<bool>> deleteProduct(String id) async {
+  Future<Result> deleteProduct(String id) async {
     return await _productService.delete(id)
       .then((result) {
       if (result.success) {

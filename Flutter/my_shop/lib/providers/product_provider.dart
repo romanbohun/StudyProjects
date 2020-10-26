@@ -40,7 +40,7 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Result<bool>> toggleFavorite() async {
+  Future<Result> toggleFavorite() async {
     final oldValue = _product.isFavorite;
     _setFavorite(!_product.isFavorite);
     final result = await _productService.toggleFavoriteFor(id, _product.isFavorite);

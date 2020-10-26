@@ -49,10 +49,10 @@ class OrderService extends FirebaseService {
         return errorRequestResult(response);
       }
       final obtainedId = json.decode(response.body)['name'];
-      return Result(success: Order.withId(obtainedId, order), failure: null);
+      return Result.successful(data: Order.withId(obtainedId, order));
 
     } catch (error) {
-      return Result(success: null, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+      return overallRequestError(error);
     }
   }
 

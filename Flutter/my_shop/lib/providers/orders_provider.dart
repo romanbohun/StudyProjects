@@ -15,17 +15,6 @@ class OrdersProvider with ChangeNotifier {
   }
 
   Future<Result<Order>> addOrder(List<CartItem> cartProducts, double total) async {
-    // _orders.insert(
-    //     0,
-    //     Order(
-    //       id: DateTime.now().toString(),
-    //       amount: total,
-    //       dateTime: DateTime.now(),
-    //       products: cartProducts,
-    //     )
-    // );
-    // notifyListeners();
-
     final order = Order(
       amount: total,
       dateTime: DateTime.now(),
@@ -34,8 +23,8 @@ class OrdersProvider with ChangeNotifier {
 
     return await _orderService.add(order)
         .then((result) {
-      if (result.failure == null) {
-        _orders.insert(0, result.success);
+      if (result.success) {
+        _orders.insert(0, result.data);
         notifyListeners();
       }
       return result;

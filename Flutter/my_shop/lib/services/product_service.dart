@@ -34,9 +34,9 @@ class ProductService extends FirebaseService {
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product.fromJson(prodId, prodData));
       });
-      return Result(success: loadedProducts, failure: null);
+      return Result.successful(data: loadedProducts);
     } catch (error) {
-      return Result(success: null, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+      return overallRequestError(error);
     }
   }
 
@@ -52,14 +52,14 @@ class ProductService extends FirebaseService {
         return errorRequestResult(response);
       }
       final obtainedId = json.decode(response.body)['name'];
-      return Result(success: Product.withId(obtainedId, product), failure: null);
+      return Result.successful(data: Product.withId(obtainedId, product));
 
     } catch (error) {
-      return Result(success: null, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+      return overallRequestError(error);
     }
   }
 
-  Future<Result<bool>> update(Product product) async {
+  Future<Result> update(Product product) async {
     final url = _productUrl(product.id);
     try{
       final response = await http.patch(
@@ -71,13 +71,13 @@ class ProductService extends FirebaseService {
         // A user-oriented error message should be provided here
         return errorRequestResult(response);
       }
-      return Result(success: true, failure: null);
+      return Result.successful();
     } catch (error) {
-      return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+      return overallRequestError(error);
     }
   }
 
-  Future<Result<bool>> delete(String id) async {
+  Future<Result> delete(String id) async {
     final url = _productUrl(id);
     try{
       final response = await http.delete(url);
@@ -86,13 +86,13 @@ class ProductService extends FirebaseService {
         // A user-oriented error message should be provided here
         return errorRequestResult(response);
       }
-      return Result(success: true, failure: null);
+      return Result.successful();
     } catch (error) {
-      return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+      return overallRequestError(error);
     }
   }
 
-  Future<Result<bool>> toggleFavoriteFor(String id, bool value) async {
+  Future<Result> toggleFavoriteFor(String id, bool value) async {
     final url = _productUrl(id);
     try{
       final response = await http.patch(
@@ -106,9 +106,9 @@ class ProductService extends FirebaseService {
         // A user-oriented error message should be provided here
         return errorRequestResult(response);
       }
-      return Result(success: true, failure: null);
+      return Result.successful();
     } catch (error) {
-      return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+      return overallRequestError(error);
     }
   }
 

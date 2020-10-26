@@ -10,5 +10,8 @@ class FirebaseService {
     return Result(success: null, failure: PError(message: response.reasonPhrase.toString()));
   }
 
+  Result overallRequestError(Error error) {
+    return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+  }
 
 }
