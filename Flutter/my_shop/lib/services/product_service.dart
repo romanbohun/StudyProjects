@@ -100,4 +100,24 @@ class ProductService extends FirebaseService {
     }
   }
 
+  Future<Result<bool>> toggleFavoriteFor(String id, bool value) async {
+    final url = _productUrl(id);
+    try{
+      final response = await http.patch(
+          url,
+          body: json.encode({
+            'isFavorite': value
+          })
+      );
+
+      if (response.statusCode != 200) {
+        // A user-oriented error message should be provided here
+        return _errorRequestResult(response);
+      }
+      return Result(success: true, failure: null);
+    } catch (error) {
+      return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+    }
+  }
+
 }

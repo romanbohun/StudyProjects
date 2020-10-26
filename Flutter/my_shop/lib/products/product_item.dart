@@ -10,6 +10,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<ProductProvider>(context, listen: false);
     final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    final scaffold = Scaffold.of(context);
 
     void undoHandler() {
       cartProvider.removeSingleItem(product.id);
@@ -32,8 +33,17 @@ class ProductItem extends StatelessWidget {
       );
     }
 
-    void toggleFavoriteHandler() {
-      product.toggleFavorite();
+    Future<void> toggleFavoriteHandler() async {
+      final result = await product.toggleFavorite();
+
+      if (!result.success) {
+        scaffold.hideCurrentSnackBar();
+        scaffold.showSnackBar(
+            SnackBar(
+              content: Text(result.failure.message),
+            )
+        );
+      }
     }
 
     void navigateToDetailsHandler() {

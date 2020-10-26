@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/common/classes/result.dart';
 
+import '../services/product_service.dart';
 import '../models/product.dart';
 
 class ProductProvider with ChangeNotifier {
+  final _productService = ProductService();
+
   Product _product;
 
   ProductProvider(this._product);
@@ -31,9 +35,17 @@ class ProductProvider with ChangeNotifier {
     return _product.isFavorite;
   }
 
-  void toggleFavorite() {
+  Future<Result<bool>> toggleFavorite() async {
+    final oldValue = _product.isFavorite;
     _product.isFavorite = !_product.isFavorite;
     notifyListeners();
+    final result = await _productService.toggleFavoriteFor(id, _product.isFavorite);
+
+    if (!result.success) {
+      _product.isFavorite = oldValue;
+      notifyListeners();
+    }
+    return result;
   }
 
 }
