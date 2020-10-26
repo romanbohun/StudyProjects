@@ -1,7 +1,9 @@
-class Result<TSuccess, TFailure> {
+import '../../common/errors/p_error.dart';
+
+class Result<TSuccess> {
 
   final TSuccess success;
-  final TFailure failure;
+  final PError failure;
 
   Result({
     this.success,

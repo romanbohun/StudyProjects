@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:my_shop/common/errors/p_error.dart';
 
 import '../common/classes/result.dart';
 import '../services/firebase_service.dart';
@@ -22,14 +23,14 @@ class ProductService extends FirebaseService {
   }
 
   Result _errorRequestResult(http.Response response) {
-    return Result(success: null, failure: response.reasonPhrase.toString());
+    return Result(success: null, failure: PError(message: response.reasonPhrase.toString()));
   }
 
   Result _errorDuringRequest(Error error) {
-    return Result(success: null, failure: 'Something went wrong during the request. Please try again later!');
+    return Result(success: null, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
   }
 
-  Future<Result<List<Product>, String>> fetchProducts() async {
+  Future<Result<List<Product>>> fetchProducts() async {
     try {
       final url = _productsUrl();
       final response = await http.get(url);
@@ -43,11 +44,11 @@ class ProductService extends FirebaseService {
       });
       return Result(success: loadedProducts, failure: null);
     } catch (error) {
-      return _errorDuringRequest(error);
+      return Result(success: null, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
     }
   }
 
-  Future<Result<Product, String>> add(Product product) async {
+  Future<Result<Product>> add(Product product) async {
     try {
       final url = _productsUrl();
       final response = await http.post(
@@ -62,11 +63,11 @@ class ProductService extends FirebaseService {
       return Result(success: Product.withId(obtainedId, product), failure: null);
 
     } catch (error) {
-      return _errorDuringRequest(error);
+      return Result(success: null, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
     }
   }
 
-  Future<Result<bool, String>> update(Product product) async {
+  Future<Result<bool>> update(Product product) async {
     final url = _productUrl(product.id);
     try{
       final response = await http.patch(
@@ -80,7 +81,22 @@ class ProductService extends FirebaseService {
       }
       return Result(success: true, failure: null);
     } catch (error) {
-      return _errorDuringRequest(error);
+      return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+    }
+  }
+
+  Future<Result<bool>> delete(String id) async {
+    final url = _productUrl(id);
+    try{
+      final response = await http.delete(url);
+
+      if (response.statusCode != 200) {
+        // A user-oriented error message should be provided here
+        return _errorRequestResult(response);
+      }
+      return Result(success: true, failure: null);
+    } catch (error) {
+      return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
     }
   }
 

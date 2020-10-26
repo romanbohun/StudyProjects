@@ -17,6 +17,7 @@ class UserProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaffold = Scaffold.of(context);
 
     void onEditHandler() {
       Navigator.of(context).pushNamed(
@@ -25,8 +26,17 @@ class UserProductItem extends StatelessWidget {
       );
     }
 
-    void onDeleteHandler() {
-      Provider.of<ProductsProvider>(context, listen: false).deleteProduct(id);
+    Future<void> onDeleteHandler() async {
+      final result = await Provider.of<ProductsProvider>(context, listen: false)
+          .deleteProduct(id);
+
+      if (!result.success) {
+        scaffold.showSnackBar(
+            SnackBar(
+              content: Text(result.failure.message),
+            )
+        );
+      }
     }
 
     return ListTile(

@@ -60,7 +60,7 @@ class ProductsProvider with ChangeNotifier {
     return _items.where((element) => element.isFavorite).toList();
   }
 
-  Future<Result<Product, String>> addProduct(Product value) {
+  Future<Result<Product>> addProduct(Product value) {
     return _productService.add(value)
         .then((result) {
       if (result.failure == null) {
@@ -79,7 +79,7 @@ class ProductsProvider with ChangeNotifier {
     });
   }
 
-  Future<Result<bool, String>> fetchAndSetProducts() async {
+  Future<Result<bool>> fetchAndSetProducts() async {
     return await _productService.fetchProducts()
       .then((result) {
       if (result.failure == null) {
@@ -98,7 +98,7 @@ class ProductsProvider with ChangeNotifier {
     return _items.firstWhere((element) => element.id == id);
   }
 
-  Future<Result<bool, String>> updateProduct(Product value) async {
+  Future<Result<bool>> updateProduct(Product value) async {
     return _productService.update(value)
         .then((result) {
       if (result.success) {
@@ -112,9 +112,15 @@ class ProductsProvider with ChangeNotifier {
     });
   }
 
-  void deleteProduct(String id) {
-    _items.removeWhere((element) => element.id == id);
-    notifyListeners();
+  Future<Result<bool>> deleteProduct(String id) {
+    return _productService.delete(id)
+      .then((result) {
+      if (result.success) {
+        _items.removeWhere((element) => element.id == id);
+        notifyListeners();
+      }
+      return result;
+    });
   }
 
 }
