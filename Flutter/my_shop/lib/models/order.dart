@@ -25,7 +25,7 @@ class Order {
   String toJson() => json.encode({
     'amount': amount,
     'dateTime': dateTime.toIso8601String(),
-    'products': products.map((cartItem) => cartItem.toJson()).toList(),
+    'products': products.map((cartItem) => cartItem.toMap()).toList(),
   });
 
   Order.withId(String id, Order order) :

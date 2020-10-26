@@ -20,4 +20,11 @@ class CartItem {
     'quantity': quantity
   });
 
+  Map<String, dynamic> toMap() => {
+    'id': id,
+    'title': title,
+    'price': price,
+    'quantity': quantity
+  };
+
 }
