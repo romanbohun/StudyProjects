@@ -12,11 +12,21 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   var _isInit = false;
+  var _isDataLoadingInProgress = false;
 
   @override
   void didChangeDependencies() {
     if (!_isInit) {
-      Provider.of<OrdersProvider>(context, listen: false).fetchAndSet();
+      setState(() {
+        _isDataLoadingInProgress = true;
+      });
+      Provider.of<OrdersProvider>(context, listen: false)
+          .fetchAndSet()
+          .then((_) {
+        setState(() {
+          _isDataLoadingInProgress = false;
+        });
+      });
       _isInit = true;
     }
     super.didChangeDependencies();
@@ -30,9 +40,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
         title: Text('Your Orders'),
       ),
       drawer: AppDrawer(),
-      body: ListView.builder(
-          itemCount: ordersProvider.orders.length,
-          itemBuilder: (ctx, index) => OrderItem(ordersProvider.orders[index]),
+      body: _isDataLoadingInProgress
+          ? Center(
+        child: CircularProgressIndicator(),
+      )
+          : ListView.builder(
+        itemCount: ordersProvider.orders.length,
+        itemBuilder: (ctx, index) => OrderItem(ordersProvider.orders[index]),
       ),
     );
   }
