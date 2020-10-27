@@ -36,8 +36,12 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
       setState(() {
         _isDataLoadingInProgress = true;
       });
-      Provider.of<ProductsProvider>(context).fetchAndSetProducts()
-          .then((_) {
+      Provider.of<ProductsProvider>(context, listen: false).fetchAndSetProducts()
+          .then((result) {
+
+        if (!result.success) {
+          print(result.failure.message);
+        }
         setState(() {
           _isDataLoadingInProgress = false;
         });
@@ -96,7 +100,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
       )
           : RefreshIndicator(
         onRefresh: () => _refreshProducts(context),
-          child: ProductsGrid(_currentFilterOption),
+        child: ProductsGrid(_currentFilterOption),
       ),
     );
   }

@@ -6,11 +6,11 @@ import '../common/errors/p_error.dart';
 class FirebaseService {
   final baseUrl = 'https://myshop-fd2c2.firebaseio.com';
 
-  Result errorRequestResult(http.Response response) {
-    return Result(success: null, failure: PError(message: response.reasonPhrase.toString()));
+  Result<T> errorRequestResult<T>(http.Response response) {
+    return Result(success: false, failure: PError(message: response.reasonPhrase.toString()));
   }
 
-  Result overallRequestError(Error error) {
+  Result<T> overallRequestError<T>(Error error) {
     return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
   }
 
