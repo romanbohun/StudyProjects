@@ -13,6 +13,12 @@ class CartItem {
     this.quantity
   });
 
+  CartItem.fromJson(Map<String, dynamic> json) :
+        id = json['title'],
+        title = json['title'],
+        price = json['price'] as double,
+        quantity = json['quantity'] as int;
+
   String toJson() => json.encode({
     'id': id,
     'title': title,

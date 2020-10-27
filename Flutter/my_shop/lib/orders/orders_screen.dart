@@ -5,7 +5,22 @@ import '../providers/orders_provider.dart';
 import '../common/drawer/app_drawer.dart';
 import '../orders/order_item.dart';
 
-class OrdersScreen extends StatelessWidget {
+class OrdersScreen extends StatefulWidget {
+  @override
+  _OrdersScreenState createState() => _OrdersScreenState();
+}
+
+class _OrdersScreenState extends State<OrdersScreen> {
+  var _isInit = false;
+
+  @override
+  void didChangeDependencies() {
+    if (!_isInit) {
+      Provider.of<OrdersProvider>(context, listen: false).fetchAndSet();
+      _isInit = true;
+    }
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     final ordersProvider = Provider.of<OrdersProvider>(context);

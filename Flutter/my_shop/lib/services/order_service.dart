@@ -19,23 +19,27 @@ class OrderService extends FirebaseService {
     return '$_currentUrl.json';
   }
 
-  // Future<Result<List<Order>>> fetch() async {
-  //   try {
-  //     final url = _ordersUrl();
-  //     final response = await http.get(url);
-  //     if (response.statusCode != 200) {
-  //       return errorRequestResult(response);
-  //     }
-  //     final extractedData = json.decode(response.body) as Map<String, dynamic>;
-  //     final List<Order> loadedOrders = [];
-  //     extractedData.forEach((orderId, orderData) {
-  //       loadedOrders.add(Product.fromJson(prodId, prodData));
-  //     });
-  //     return Result(success: loadedProducts, failure: null);
-  //   } catch (error) {
-  //     return Result(success: null, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
-  //   }
-  // }
+  Future<Result<List<Order>>> fetch() async {
+    try {
+      final url = _ordersUrl();
+      final response = await http.get(url);
+      // print(response.body);
+      if (response.statusCode != 200) {
+        return errorRequestResult(response);
+      }
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      if (extractedData == null) {
+        return Result.successful(data: []);
+      }
+      final List<Order> loadedOrders = [];
+      extractedData.forEach((orderId, orderData) {
+        loadedOrders.add(Order.fromJson(orderId, orderData));
+      });
+      return Result.successful(data: loadedOrders);
+    } catch (error) {
+      return Result(success: false, failure: PError(message: 'Something went wrong during the request. Please try again later!'));
+    }
+  }
 
   Future<Result<Order>> add(Order order) async {
     try {

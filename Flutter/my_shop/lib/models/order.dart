@@ -15,12 +15,14 @@ class Order {
     @required this.products,
     @required this.dateTime
   });
-  //
-  // Order.fromJson(String id, Map<String, dynamic> json) :
-  //       id = id,
-  //       amount = json['amount'] as double,
-  //       dateTime = json['imageUrl'] as DateTime,
-  //       isFavorite = json['isFavorite'] as bool;
+
+  Order.fromJson(String id, Map<String, dynamic> product) :
+        id = id,
+        amount = product['amount'] as double,
+        dateTime = DateTime.parse(product['dateTime']),
+        products = (product['products'] as List<dynamic>)
+            .map((item) => CartItem.fromJson(item))
+            .toList();
 
   String toJson() => json.encode({
     'amount': amount,

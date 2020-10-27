@@ -14,6 +14,18 @@ class OrdersProvider with ChangeNotifier {
     return [..._orders];
   }
 
+  Future<Result> fetchAndSet() async {
+    return await _orderService.fetch()
+        .then((result) {
+      if (result.success) {
+        _orders.clear();
+        _orders.addAll(result.data);
+        notifyListeners();
+      }
+      return result;
+    });
+  }
+
   Future<Result<Order>> addOrder(List<CartItem> cartProducts, double total) async {
     final order = Order(
       amount: total,
