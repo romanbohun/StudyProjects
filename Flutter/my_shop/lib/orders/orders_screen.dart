@@ -11,26 +11,22 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
-  var _isInit = false;
   var _isDataLoadingInProgress = false;
 
   @override
-  void didChangeDependencies() {
-    if (!_isInit) {
+  void initState() {
+    _isDataLoadingInProgress = true;
+    Provider.of<OrdersProvider>(context, listen: false)
+        .fetchAndSet()
+        .then((_) {
       setState(() {
-        _isDataLoadingInProgress = true;
+        _isDataLoadingInProgress = false;
       });
-      Provider.of<OrdersProvider>(context, listen: false)
-          .fetchAndSet()
-          .then((_) {
-        setState(() {
-          _isDataLoadingInProgress = false;
-        });
-      });
-      _isInit = true;
-    }
-    super.didChangeDependencies();
+    });
+
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final ordersProvider = Provider.of<OrdersProvider>(context);

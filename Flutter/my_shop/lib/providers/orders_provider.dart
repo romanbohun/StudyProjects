@@ -19,7 +19,7 @@ class OrdersProvider with ChangeNotifier {
         .then((result) {
       if (result.success) {
         _orders.clear();
-        _orders.addAll(result.data);
+        _orders.addAll(result.data.reversed);
         notifyListeners();
       }
       return result;
