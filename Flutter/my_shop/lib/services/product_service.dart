@@ -30,6 +30,10 @@ class ProductService extends FirebaseService {
         return errorRequestResult(response);
       }
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      if (extractedData == null) {
+        return Result.successful(data: []);
+      }
+      
       final List<Product> loadedProducts = [];
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product.fromJson(prodId, prodData));
