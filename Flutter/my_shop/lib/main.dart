@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
-        initialRoute: RouteNames.root.routePath,
+        initialRoute: RouteNames.auth.routePath,
         routes: Routes.allRoutes,
         onGenerateRoute: (settings) {
           return MaterialPageRoute(
