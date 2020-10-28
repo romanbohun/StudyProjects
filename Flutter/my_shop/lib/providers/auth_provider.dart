@@ -12,7 +12,7 @@ class AuthProvider with ChangeNotifier {
   String _userId;
 
   bool get isAuth {
-    return false;
+    return _token != null;
   }
 
   String get token {
@@ -48,6 +48,13 @@ class AuthProvider with ChangeNotifier {
     _token = result.data.idToken;
     _expiryDate = DateTime.now().add(Duration(seconds: int.parse(result.data.expiresIn)));
     _userId = result.data.localId;
+    notifyListeners();
+  }
+
+  void logout() {
+    _token = null;
+    _userId = null;
+    _expiryDate = null;
     notifyListeners();
   }
 

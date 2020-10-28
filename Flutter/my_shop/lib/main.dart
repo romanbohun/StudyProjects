@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/auth/auth_screen.dart';
 import 'package:my_shop/services/order_service.dart';
 import 'package:my_shop/services/product_service.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
               ),
         ),
       ],
-      child:Consumer<AuthProvider>(
+      child: Consumer<AuthProvider>(
         builder: (ctx, authProvider, _) => MaterialApp(
           title: 'MyShop',
           theme: ThemeData(
@@ -49,9 +50,7 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.deepOrange,
             fontFamily: 'Lato',
           ),
-          initialRoute: authProvider.isAuth
-              ? RouteNames.root.routePath
-              : RouteNames.auth.routePath,
+          home: authProvider.isAuth ? ProductOverviewScreen() : AuthScreen(),
           routes: Routes.allRoutes,
           onGenerateRoute: (settings) {
             return MaterialPageRoute(
