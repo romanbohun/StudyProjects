@@ -25,12 +25,12 @@ class ProductService extends FirebaseService {
   }
 
   String _productFavoriteUrl(String id) {
-    return '$baseUrl/userFavorites/$userId/$id.json'
+    return '$baseUrl/users/$userId/favorites/$id.json'
         .addToken(token);
   }
 
   String _userFavoriteProductsUrl() {
-    return '$baseUrl/userFavorites/$userId.json'
+    return '$baseUrl/users/$userId/favorites/.json'
         .addToken(token);
   }
 
