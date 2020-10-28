@@ -36,7 +36,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
       setState(() {
         _isDataLoadingInProgress = true;
       });
-      Provider.of<ProductsProvider>(context, listen: false).fetchAndSetProducts()
+      Provider.of<ProductsProvider>(context, listen: false).fetchAndSetAllProducts()
           .then((result) {
 
         if (!result.success) {
@@ -52,7 +52,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   }
 
   Future<void> _refreshProducts(BuildContext context) async {
-    await Provider.of<ProductsProvider>(context, listen: false).fetchAndSetProducts();
+    await Provider.of<ProductsProvider>(context, listen: false).fetchAndSetAllProducts();
   }
 
   @override

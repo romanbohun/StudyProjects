@@ -9,7 +9,7 @@ import '../products/user_product_item.dart';
 class UserProductsScreen extends StatelessWidget {
 
   Future<void> _refreshProducts(BuildContext context) async {
-    await Provider.of<ProductsProvider>(context, listen: false).fetchAndSetProducts();
+    await Provider.of<ProductsProvider>(context, listen: false).fetchUserProducts();
   }
 
   @override
@@ -36,9 +36,9 @@ class UserProductsScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: ListView.builder(
-              itemCount: productsProvider.items.length,
+              itemCount: productsProvider.userItems.length,
               itemBuilder: (_, index) {
-                var product = productsProvider.items[index];
+                var product = productsProvider.userItems[index];
                 return Column(
                   children: [
                     UserProductItem(

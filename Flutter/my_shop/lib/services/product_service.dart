@@ -19,6 +19,13 @@ class ProductService extends FirebaseService {
         .addToken(token);
   }
 
+  String _userProductsUrl() {
+    return '$_currentUrl.json'
+        .addToken(token)
+        + '&'
+        .addFilterByCreator(userId);
+  }
+
   String _productUrl(String id) {
     return '$_currentUrl/$id.json'
         .addToken(token);
@@ -34,7 +41,7 @@ class ProductService extends FirebaseService {
         .addToken(token);
   }
 
-  Future<Result<List<Product>>> fetch() async {
+  Future<Result<List<Product>>> fetchAllProducts() async {
     try {
       final url = _productsUrl();
       final response = await http.get(url);
@@ -57,6 +64,28 @@ class ProductService extends FirebaseService {
         var product = Product.fromJson(prodId, prodData);
         product.isFavorite = favorites[product.id] ?? false;
         loadedProducts.add(product);
+      });
+      return Result.successful(data: loadedProducts);
+    } catch (error) {
+      return overallRequestError(error);
+    }
+  }
+
+  Future<Result<List<Product>>> fetchUserProducts() async {
+    try {
+      final url = _userProductsUrl();
+      final response = await http.get(url);
+      if (response.statusCode != 200) {
+        return errorRequestResult(response);
+      }
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      if (extractedData == null) {
+        return Result.successful(data: []);
+      }
+
+      final List<Product> loadedProducts = [];
+      extractedData.forEach((prodId, prodData) {
+        loadedProducts.add(Product.fromJson(prodId, prodData));
       });
       return Result.successful(data: loadedProducts);
     } catch (error) {

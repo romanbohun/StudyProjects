@@ -55,12 +55,13 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
 
   void _saveTitleHandler(String value) {
     _product = Product(
-      title: value,
-      id: _product.id,
-      price: _product.price,
-      description: _product.description,
-      imageUrl: _product.imageUrl,
-      isFavorite: _product.isFavorite,
+        title: value,
+        id: _product.id,
+        price: _product.price,
+        description: _product.description,
+        imageUrl: _product.imageUrl,
+        isFavorite: _product.isFavorite,
+        creatorId: _product.creatorId
     );
   }
 
@@ -74,12 +75,13 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
 
   void _savePriceHandler(String value) {
     _product = Product(
-      price: value.isEmpty ? 0.0 : double.parse(value),
-      id: _product.id,
-      title: _product.title,
-      description: _product.description,
-      imageUrl: _product.imageUrl,
-      isFavorite: _product.isFavorite,
+        price: value.isEmpty ? 0.0 : double.parse(value),
+        id: _product.id,
+        title: _product.title,
+        description: _product.description,
+        imageUrl: _product.imageUrl,
+        isFavorite: _product.isFavorite,
+        creatorId: _product.creatorId
     );
   }
 
@@ -100,12 +102,13 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
 
   void _saveDescriptionHandler(String value) {
     _product = Product(
-      description: value,
-      id: _product.id,
-      title: _product.title,
-      price: _product.price,
-      imageUrl: _product.imageUrl,
-      isFavorite: _product.isFavorite,
+        description: value,
+        id: _product.id,
+        title: _product.title,
+        price: _product.price,
+        imageUrl: _product.imageUrl,
+        isFavorite: _product.isFavorite,
+        creatorId: _product.creatorId
     );
   }
 
@@ -128,6 +131,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
       price: _product.price,
       description: _product.description,
       isFavorite: _product.isFavorite,
+      creatorId: _product.creatorId,
     );
   }
 
@@ -196,7 +200,7 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
         if (result.success) {
           Navigator.of(context).pop();
         } else {
-            await _showDialogForResult(result);
+          await _showDialogForResult(result);
         }
         setState(() {
           _isRequestInProgress = false;
@@ -212,12 +216,13 @@ class _UserProductEditScreenState extends State<UserProductEditScreen> {
       if (productId != null) {
         final productProvider = Provider.of<ProductsProvider>(context, listen: false).findById(productId);
         _product = Product(
-            id: productProvider.id,
-            title: productProvider.title,
-            description: productProvider.description,
-            price: productProvider.price,
-            imageUrl: productProvider.imageUrl,
-            isFavorite: productProvider.isFavorite
+          id: productProvider.id,
+          title: productProvider.title,
+          description: productProvider.description,
+          price: productProvider.price,
+          imageUrl: productProvider.imageUrl,
+          isFavorite: productProvider.isFavorite,
+          creatorId: productProvider.creatorId,
         );
 
         _imageUrlController.text = _product.imageUrl;

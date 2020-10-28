@@ -35,6 +35,10 @@ class ProductProvider with ChangeNotifier {
     return _product.isFavorite;
   }
 
+  String get creatorId {
+    return _product.creatorId;
+  }
+
   void _setFavorite(bool value) {
     _product.isFavorite = value;
     notifyListeners();

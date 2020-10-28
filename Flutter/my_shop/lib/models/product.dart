@@ -8,6 +8,7 @@ class Product  with ChangeNotifier {
   final double price;
   final String imageUrl;
   bool isFavorite;
+  final String creatorId;
 
   Product({
     @required this.id,
@@ -15,6 +16,7 @@ class Product  with ChangeNotifier {
     @required this.description,
     @required this.price,
     @required this.imageUrl,
+    @required this.creatorId,
     this.isFavorite = false
   });
 
@@ -24,6 +26,7 @@ class Product  with ChangeNotifier {
         description = json['description'],
         price = json['price'] as double,
         imageUrl = json['imageUrl'],
+        creatorId = json['creatorId'],
         isFavorite = false;
 
   Product.withId(String id, Product product) :
@@ -32,14 +35,25 @@ class Product  with ChangeNotifier {
         description = product.description,
         price = product.price,
         imageUrl = product.imageUrl,
-        isFavorite = product.isFavorite;
+        isFavorite = product.isFavorite,
+        creatorId = product.creatorId;
+
+  Product.withCreatorId(String creatorId, Product product) :
+        id = product.id,
+        title = product.title,
+        description = product.description,
+        price = product.price,
+        imageUrl = product.imageUrl,
+        isFavorite = product.isFavorite,
+        creatorId = creatorId;
 
 
   String toJson() => json.encode({
     'title': title,
     'description': description,
     'price': price,
-    'imageUrl': imageUrl
+    'imageUrl': imageUrl,
+    'creatorId': creatorId
   });
 
 }

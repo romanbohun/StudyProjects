@@ -58,12 +58,18 @@ class ProductsProvider with ChangeNotifier {
     return [..._items];
   }
 
+  List<ProductProvider> _userItems = [];
+  List<ProductProvider> get userItems {
+    return [..._userItems];
+  }
+
   List<ProductProvider> get favoriteItems {
     return _items.where((element) => element.isFavorite).toList();
   }
 
-  Future<Result<Product>> addProduct(Product value) {
-    return _productService.add(value)
+  Future<Result<Product>> addProduct(Product newProduct) {
+    final product = Product.withCreatorId(_productService.userId, newProduct);
+    return _productService.add(product)
         .then((result) {
       if (result.success) {
         _items.add(ProductProvider(this._productService, result.data));
@@ -73,8 +79,8 @@ class ProductsProvider with ChangeNotifier {
     });
   }
 
-  Future<Result> fetchAndSetProducts() async {
-    return await _productService.fetch()
+  Future<Result> fetchAndSetAllProducts() async {
+    return await _productService.fetchAllProducts()
       .then((result) {
       if (result.success) {
         _items.clear();
@@ -87,11 +93,26 @@ class ProductsProvider with ChangeNotifier {
     });
   }
 
+  Future<Result> fetchUserProducts() async {
+    return await _productService.fetchUserProducts()
+        .then((result) {
+      if (result.success) {
+        _userItems.clear();
+        result.data.forEach((product) {
+          _userItems.add(ProductProvider(this._productService, product));
+        });
+        notifyListeners();
+      }
+      return result;
+    });
+  }
+
   ProductProvider findById(String id) {
     return _items.firstWhere((element) => element.id == id);
   }
 
   Future<Result> updateProduct(Product value) async {
+    // final product = Product.withCreatorId(_productService.userId, value);
     return await _productService.update(value)
         .then((result) {
       if (result.success) {
