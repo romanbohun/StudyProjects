@@ -24,7 +24,7 @@ class Product  with ChangeNotifier {
         description = json['description'],
         price = json['price'] as double,
         imageUrl = json['imageUrl'],
-        isFavorite = json['isFavorite'] as bool;
+        isFavorite = false;
 
   Product.withId(String id, Product product) :
         id = id,
@@ -39,8 +39,7 @@ class Product  with ChangeNotifier {
     'title': title,
     'description': description,
     'price': price,
-    'imageUrl': imageUrl,
-    'isFavorite': isFavorite,
+    'imageUrl': imageUrl
   });
 
 }

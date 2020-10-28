@@ -24,6 +24,10 @@ class AuthProvider with ChangeNotifier {
     return null;
   }
 
+  String get userId {
+    return _userId;
+  }
+
   Future<Result<AuthResponse>> signUp(String email, String password) async {
     final result = await _authService.signUp(email, password);
     if (result.success) {
