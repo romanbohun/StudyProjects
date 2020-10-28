@@ -6,17 +6,18 @@ import '../common/errors/p_error.dart';
 import '../models/order.dart';
 import '../common/classes/result.dart';
 import '../services/firebase_service.dart';
-import '../models/product.dart';
+import '../common/extensions/string_extensions.dart';
 
 class OrderService extends FirebaseService {
   String _currentUrl;
 
-  OrderService() {
+  OrderService(String token) : super(token: token) {
     _currentUrl = super.baseUrl + '/orders';
   }
 
   String _ordersUrl() {
-    return '$_currentUrl.json';
+    return '$_currentUrl.json'
+        .addToken(token);
   }
 
   Future<Result<List<Order>>> fetch() async {

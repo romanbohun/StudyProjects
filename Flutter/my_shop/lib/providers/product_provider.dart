@@ -5,11 +5,11 @@ import '../services/product_service.dart';
 import '../models/product.dart';
 
 class ProductProvider with ChangeNotifier {
-  final _productService = ProductService();
+  final ProductService _productService;
 
   Product _product;
 
-  ProductProvider(this._product);
+  ProductProvider(this._productService, this._product);
 
   String get id {
     return _product.id;

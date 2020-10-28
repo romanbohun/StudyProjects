@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:my_shop/common/classes/result.dart';
+import 'package:my_shop/common/routes/routes.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth_provider.dart';
@@ -128,22 +130,22 @@ class _AuthCardState extends State<AuthCard> {
     setState(() {
       _isLoading = true;
     });
+    Result result;
     if (_authMode == AuthMode.Login) {
       // Log user in
-      final result = await Provider.of<AuthProvider>(context, listen: false)
+      result = await Provider.of<AuthProvider>(context, listen: false)
           .signIn(_authData['email'], _authData['password']);
-
-      if (!result.success) {
-        _showErrorDialog(result.failure.message);
-      }
     } else {
       // Sign user up
-      final result = await Provider.of<AuthProvider>(context, listen: false)
+      result = await Provider.of<AuthProvider>(context, listen: false)
           .signUp(_authData['email'], _authData['password']);
-      if (!result.success) {
-        _showErrorDialog(result.failure.message);
-      }
     }
+    if (!result.success) {
+      _showErrorDialog(result.failure.message);
+    } else {
+      Navigator.of(context).pushReplacementNamed(RouteNames.root.routePath);
+    }
+
     setState(() {
       _isLoading = false;
     });

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/services/order_service.dart';
+import 'package:my_shop/services/product_service.dart';
 import 'package:provider/provider.dart';
 
 import './common/routes/routes.dart';
@@ -21,30 +23,42 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => AuthProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (ctx) => ProductsProvider(),
+        ChangeNotifierProxyProvider<AuthProvider, ProductsProvider>(
+          update: (ctx, auth, previousProductProvider) =>
+              ProductsProvider(
+                  ProductService(auth.token),
+                  previousProductProvider == null ? [] : previousProductProvider.items,
+              ),
         ),
         ChangeNotifierProvider(
           create: (ctx) => CartProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (ctx) => OrdersProvider(),
+        ChangeNotifierProxyProvider<AuthProvider, OrdersProvider>(
+          update: (ctx, auth, previousOrdersProvider) =>
+              OrdersProvider(
+                OrderService(auth.token),
+                previousOrdersProvider == null ? [] : previousOrdersProvider.orders
+              ),
         ),
       ],
-      child: MaterialApp(
-        title: 'MyShop',
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.deepOrange,
-          fontFamily: 'Lato',
+      child:Consumer<AuthProvider>(
+        builder: (ctx, authProvider, _) => MaterialApp(
+          title: 'MyShop',
+          theme: ThemeData(
+            primarySwatch: Colors.purple,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'Lato',
+          ),
+          initialRoute: authProvider.isAuth
+              ? RouteNames.root.routePath
+              : RouteNames.auth.routePath,
+          routes: Routes.allRoutes,
+          onGenerateRoute: (settings) {
+            return MaterialPageRoute(
+                builder: (ctx) => ProductOverviewScreen()
+            );
+          },
         ),
-        initialRoute: RouteNames.auth.routePath,
-        routes: Routes.allRoutes,
-        onGenerateRoute: (settings) {
-          return MaterialPageRoute(
-              builder: (ctx) => ProductOverviewScreen()
-          );
-        },
       ),
     );
   }

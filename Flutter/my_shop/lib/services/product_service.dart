@@ -2,24 +2,26 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../common/errors/p_error.dart';
 import '../common/classes/result.dart';
 import '../services/firebase_service.dart';
 import '../models/product.dart';
+import '../common/extensions/string_extensions.dart';
 
 class ProductService extends FirebaseService {
   String _currentUrl;
 
-  ProductService() {
+  ProductService(String token) : super(token: token) {
     _currentUrl = super.baseUrl + '/products';
   }
 
   String _productsUrl() {
-    return '$_currentUrl.json';
+    return '$_currentUrl.json'
+        .addToken(token);
   }
 
   String _productUrl(String id) {
-    return '$_currentUrl/$id.json';
+    return '$_currentUrl/$id.json'
+        .addToken(token);
   }
 
   Future<Result<List<Product>>> fetch() async {

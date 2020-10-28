@@ -6,7 +6,9 @@ import '../models/order.dart';
 import '../models/cart_item.dart';
 
 class OrdersProvider with ChangeNotifier {
-  final _orderService = OrderService();
+  final OrderService _orderService;
+
+  OrdersProvider(this._orderService, this._orders);
 
   List<Order> _orders = [];
 

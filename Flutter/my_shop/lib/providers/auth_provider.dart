@@ -11,12 +11,40 @@ class AuthProvider with ChangeNotifier {
   DateTime _expiryDate;
   String _userId;
 
-  Future<Result> signUp(String email, String password) async {
-    return _authService.signUp(email, password);
+  bool get isAuth {
+    return false;
   }
 
-  Future<Result> signIn(String email, String password) async {
-    return _authService.signIn(email, password);
+  String get token {
+    if (_expiryDate != null &&
+        _expiryDate.isAfter(DateTime.now()) &&
+        _token != null) {
+      return _token;
+    }
+    return null;
+  }
+
+  Future<Result<AuthResponse>> signUp(String email, String password) async {
+    final result = await _authService.signUp(email, password);
+    if (result.success) {
+      _setParameters(result);
+    }
+    return result;
+  }
+
+  Future<Result<AuthResponse>> signIn(String email, String password) async {
+    final result = await _authService.signIn(email, password);
+    if (result.success) {
+      _setParameters(result);
+    }
+    return result;
+  }
+
+  void _setParameters(Result<AuthResponse> result) {
+    _token = result.data.idToken;
+    _expiryDate = DateTime.now().add(Duration(seconds: int.parse(result.data.expiresIn)));
+    _userId = result.data.localId;
+    notifyListeners();
   }
 
 }

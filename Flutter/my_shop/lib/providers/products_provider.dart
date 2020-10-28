@@ -7,7 +7,9 @@ import '../common/classes/result.dart';
 import '../services/product_service.dart';
 
 class ProductsProvider with ChangeNotifier {
-  final _productService = ProductService();
+  final ProductService _productService;
+
+  ProductsProvider(this._productService, this._items);
 
   List<ProductProvider> _items = [
     // ProductProvider(
@@ -64,7 +66,7 @@ class ProductsProvider with ChangeNotifier {
     return _productService.add(value)
         .then((result) {
       if (result.success) {
-        _items.add(ProductProvider(result.data));
+        _items.add(ProductProvider(this._productService, result.data));
         notifyListeners();
       }
       return result;
@@ -77,7 +79,7 @@ class ProductsProvider with ChangeNotifier {
       if (result.success) {
         _items.clear();
         result.data.forEach((product) {
-          _items.add(ProductProvider(product));
+          _items.add(ProductProvider(this._productService, product));
         });
         notifyListeners();
       }
@@ -95,7 +97,7 @@ class ProductsProvider with ChangeNotifier {
       if (result.success) {
         final foundIndex = _items.indexWhere((element) => element.id == value.id);
         if (foundIndex >= 0) {
-          _items[foundIndex] = ProductProvider(value);
+          _items[foundIndex] = ProductProvider(this._productService, value);
           notifyListeners();
         }
       }
