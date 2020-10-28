@@ -11,8 +11,8 @@ import '../common/extensions/string_extensions.dart';
 class OrderService extends FirebaseService {
   String _currentUrl;
 
-  OrderService(String token) : super(token: token) {
-    _currentUrl = super.baseUrl + '/orders';
+  OrderService(String token, String userId) : super(token: token, userId: userId)  {
+    _currentUrl = super.baseUrl + '/users/$userId/orders';
   }
 
   String _ordersUrl() {
