@@ -9,7 +9,9 @@ import '../services/product_service.dart';
 class ProductsProvider with ChangeNotifier {
   final ProductService _productService;
 
-  ProductsProvider(this._productService, this._items);
+  ProductsProvider(this._productService, this._items) {
+
+  }
 
   List<ProductProvider> _items = [
     // ProductProvider(

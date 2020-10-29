@@ -1,34 +1,35 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:my_shop/common/classes/result.dart';
-import 'package:my_shop/models/auth/auth_response.dart';
+import 'package:my_shop/models/auth/auth_model.dart';
+import '../common/classes/result.dart';
+import '../models/auth/auth_response.dart';
+import '../persistence/auth_storage_service.dart';
 
 import '../services/auth_service.dart';
 
 class AuthProvider with ChangeNotifier {
   final _authService = AuthService();
+  final _authStorageService = AuthStorageService();
 
-  String _token;
-  DateTime _expiryDate;
-  String _userId;
+  AuthModel _authModel;
   Timer _authTimer;
 
   bool get isAuth {
-    return _token != null;
+    return _authModel?.token != null;
   }
 
   String get token {
-    if (_expiryDate != null &&
-        _expiryDate.isAfter(DateTime.now()) &&
-        _token != null) {
-      return _token;
+    if (_authModel?.expiryDate != null &&
+        _authModel.expiryDate.isAfter(DateTime.now()) &&
+        _authModel?.token != null) {
+      return _authModel?.token;
     }
     return null;
   }
 
   String get userId {
-    return _userId;
+    return _authModel?.userId;
   }
 
   Future<Result<AuthResponse>> signUp(String email, String password) async {
@@ -47,25 +48,40 @@ class AuthProvider with ChangeNotifier {
     return result;
   }
 
-  void _setParameters(Result<AuthResponse> result) {
-    _token = result.data.idToken;
-    _expiryDate = DateTime.now().add(Duration(seconds: int.parse(result.data.expiresIn)));
-    _userId = result.data.localId;
-    _autoLogout();
+  void logout() {
+    _authModel = null;
+    _authTimer?.cancel();
+    _authStorageService.add(AuthModel.empty());
     notifyListeners();
   }
 
-  void logout() {
-    _token = null;
-    _userId = null;
-    _expiryDate = null;
-    _authTimer?.cancel();
+  Future<bool> tryAutoLogin() async {
+    _authModel = await _authStorageService.get();
+    if (_authModel == null) {
+      return false;
+    }
+    if (_authModel.expiryDate.isBefore(DateTime.now())) {
+      return false;
+    }
+    notifyListeners();
+    _autoLogout();
+    return true;
+  }
+
+  void _setParameters(Result<AuthResponse> result) {
+    _authModel = AuthModel(
+      token: result.data.idToken,
+      expiryDate: DateTime.now().add(Duration(seconds: int.parse(result.data.expiresIn))),
+      userId: result.data.localId,
+    );
+    _authStorageService.add(_authModel);
+    _autoLogout();
     notifyListeners();
   }
 
   void _autoLogout() {
     _authTimer?.cancel();
-    final timeToExpiry = _expiryDate.difference(DateTime.now()).inSeconds;
+    final timeToExpiry = _authModel?.expiryDate?.difference(DateTime.now())?.inSeconds;
     _authTimer = Timer(Duration(seconds: timeToExpiry), logout);
   }
 
