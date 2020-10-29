@@ -142,8 +142,6 @@ class _AuthCardState extends State<AuthCard> {
     }
     if (!result.success) {
       _showErrorDialog(result.failure.message);
-    } else {
-      Navigator.of(context).pushReplacementNamed(RouteNames.root.routePath);
     }
 
     setState(() {

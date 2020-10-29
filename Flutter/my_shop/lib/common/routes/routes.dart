@@ -42,12 +42,11 @@ extension RoutesNameExtension on RouteNames {
 
 class Routes {
   static final allRoutes = {
-    // RouteNames.root.routePath: (ctx) => ProductOverviewScreen(),
     RouteNames.productDetails.routePath: (ctx) => ProductDetailsScreen(),
     RouteNames.cart.routePath: (ctx) => CartScreen(),
     RouteNames.orders.routePath: (ctx) => OrdersScreen(),
     RouteNames.userProducts.routePath: (ctx) => UserProductsScreen(),
     RouteNames.editUserProduct.routePath: (ctx) => UserProductEditScreen(),
-    // RouteNames.auth.routePath: (ctx) => AuthScreen(),
+    RouteNames.auth.routePath: (ctx) => AuthScreen(),
   };
 }

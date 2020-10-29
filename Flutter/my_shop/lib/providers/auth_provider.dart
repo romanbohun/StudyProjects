@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:my_shop/common/classes/result.dart';
 import 'package:my_shop/models/auth/auth_response.dart';
@@ -10,6 +12,7 @@ class AuthProvider with ChangeNotifier {
   String _token;
   DateTime _expiryDate;
   String _userId;
+  Timer _authTimer;
 
   bool get isAuth {
     return _token != null;
@@ -48,6 +51,7 @@ class AuthProvider with ChangeNotifier {
     _token = result.data.idToken;
     _expiryDate = DateTime.now().add(Duration(seconds: int.parse(result.data.expiresIn)));
     _userId = result.data.localId;
+    _autoLogout();
     notifyListeners();
   }
 
@@ -55,7 +59,14 @@ class AuthProvider with ChangeNotifier {
     _token = null;
     _userId = null;
     _expiryDate = null;
+    _authTimer?.cancel();
     notifyListeners();
+  }
+
+  void _autoLogout() {
+    _authTimer?.cancel();
+    final timeToExpiry = _expiryDate.difference(DateTime.now()).inSeconds;
+    _authTimer = Timer(Duration(seconds: timeToExpiry), logout);
   }
 
 }
