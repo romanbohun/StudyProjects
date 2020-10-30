@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:great_places/places/providers/places_provider.dart';
+import 'package:provider/provider.dart';
 
-import 'package:great_places/common/routes/routes.dart';
+import '../../common/routes/routes.dart';
 import '../../places/screens/widgets/image_input.dart';
 
 class AddPlaceScreen extends StatefulWidget {
@@ -18,11 +20,13 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     _pickedImage = file;
   }
 
-  void addHandler(BuildContext context) {
+  void _addHandler(BuildContext context) {
     if (_titleController.text.isEmpty || _pickedImage == null) {
       return;
     }
-    Navigator.of(context).pushNamed(RouteNames.addPlace.routePath);
+    Provider.of<PlacesProvider>(context, listen: false)
+        .addPlace(_titleController.text, _pickedImage);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -53,7 +57,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               ),
             ),
             RaisedButton.icon(
-              onPressed: () { addHandler(context); },
+              onPressed: () { _addHandler(context); },
               icon: Icon(Icons.add),
               label: Text('Add Place'),
               elevation: 0,

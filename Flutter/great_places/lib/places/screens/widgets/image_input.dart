@@ -25,6 +25,10 @@ class _ImageInputState extends State<ImageInput> {
         maxWidth: 600,
     );
 
+    if (imageFile == null) {
+      return null;
+    }
+
     final savedFile = await _fileService.saveFileToDocumets(File(imageFile.path));
     setState(() {
       _storedImage = savedFile;
