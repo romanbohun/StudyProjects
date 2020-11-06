@@ -22,6 +22,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        additionalSafeAreaInsets.top = 20
+        
         title = ""
         searchBar = RoundedSearchBar(frame: CGRect(x: 0, y: 0, width: searchBarContainerInStackView.bounds.width, height: 50))
         searchBar.layer.cornerRadius = 25
@@ -138,6 +140,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 navigationItem.titleView = searchBar;
                 var frame = searchBar.frame
                 frame.origin.x = 16
+                frame.origin.y = -10
                 searchBar.frame = frame
                 searchBar.translatesAutoresizingMaskIntoConstraints = true
                 searchBar.autoresizingMask = [.flexibleWidth, .flexibleHeight]
