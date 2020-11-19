@@ -16,7 +16,7 @@ class Location extends ATable {
   });
 
   @override
-  Location factory(Map<String, dynamic> values) {
+  Location factory({Map<String, dynamic> values = const {}}) {
     return Location(
       id: values['id'],
       latitude: values['latitude'],

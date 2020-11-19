@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:great_places/common/routes/routes.dart';
 import 'package:great_places/places/providers/places_provider.dart';
@@ -36,9 +38,10 @@ class PlacesListScreen extends StatelessWidget {
             itemCount: placesProvider.places.length,
             itemBuilder: (ctx, index) {
               final place = placesProvider.places[index];
+              final file = new File(place.filePath);
               return ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: FileImage(place.image),
+                  backgroundImage: FileImage(file),
                 ),
                 title: Text(place.title),
                 onTap: _itemSelectedHandler,

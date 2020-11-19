@@ -8,7 +8,7 @@ abstract class ATable {
 
   Map<String, dynamic> mapValues;
 
-  ATable factory(Map<String, dynamic> values);
+  ATable factory({Map<String, dynamic> values = const {}});
 }
 
 extension TableName on ATable {

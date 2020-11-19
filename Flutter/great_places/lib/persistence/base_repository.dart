@@ -53,7 +53,7 @@ class BaseRepository<T extends ATable> implements ARepository<T> {
           where: model.getWhereClause(whereOptions),
           whereArgs: whereOptions.values
       );
-      return model.factory(mappedDataList.first);
+      return model.factory(values: mappedDataList.first);
     } catch (error) {
       return null;
     } finally {
