@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
-import '../../persistence/table_abstraction.dart';
+import '../../persistence/abstractions/table_abstraction.dart';
 import '../models/location.dart';
 
 class Place extends ATable {

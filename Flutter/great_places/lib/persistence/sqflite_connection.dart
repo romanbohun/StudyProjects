@@ -1,11 +1,9 @@
-import 'package:flutter/foundation.dart';
-import 'package:great_places/persistence/table_abstraction.dart';
-import 'package:great_places/places/models/place.dart';
-
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
 
-import '../persistence/connection_abstract.dart';
+import '../persistence/abstractions/table_abstraction.dart';
+import '../persistence/abstractions/connection_abstract.dart';
+import '../places/models/place.dart';
 
 class SQFliteConnection implements AConnection<Future<sql.Database>> {
   final _dbName = 'places.db';

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:great_places/common/providers/providers_registrar.dart';
 import 'package:great_places/common/routes/routes.dart';
+import 'package:great_places/persistence/repositories/place_repository.dart';
+import 'package:great_places/places/models/place.dart';
 import 'package:great_places/places/screens/places_list_screen.dart';
 
 void main() {

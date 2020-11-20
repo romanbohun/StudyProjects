@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 abstract class ATable {
 
   String tableName; // If null, class name will be taken
@@ -31,20 +29,7 @@ extension DmlHelperMethods on ATable {
     return stringBuffer.toString().substring(0, stringBuffer.length - 5);
   }
 
-  // List<dynamic> getWhereArgs(Map<String, dynamic> values) {
-  //   var values = List<dynamic>();
-  //
-  //   primaryKeys.keys.forEach((key) {
-  //     values.add(keyValues[key]);
-  //   });
-  //
-  //   return values;
-  // }
-
   String getDeleteWhereClause() {
-    // var stringBuffer = StringBuffer();
-    // stringBuffer.writeAll(primaryKeys.keys, " = ? AND ");
-    // return stringBuffer.toString().substring(0, stringBuffer.length - 5);
     return getWhereClause(primaryKeys);
   }
 

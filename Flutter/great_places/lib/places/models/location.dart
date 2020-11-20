@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:great_places/persistence/table_abstraction.dart';
+import 'package:great_places/persistence/abstractions/table_abstraction.dart';
 
 class Location extends ATable {
 
