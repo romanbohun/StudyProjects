@@ -14,7 +14,7 @@ class PlacesProvider with ChangeNotifier {
     return [..._places];
   }
 
-  Future<void> addPlace(String title, String pickedFilePath) async {
+  Future<void> add(String title, String pickedFilePath) async {
     var pr = PlaceRepository(SQFliteConnection());
 
     final newPlace = Place(
