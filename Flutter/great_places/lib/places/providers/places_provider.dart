@@ -28,4 +28,10 @@ class PlacesProvider with ChangeNotifier {
     await _repository.add(newPlace.mapValues);
   }
 
+  Future<void> fetch() async {
+    final listOfPlaces = await _repository.getAll();
+    _places = listOfPlaces.map((place) => Place.factory(place)).toList();
+    notifyListeners();
+  }
+
 }

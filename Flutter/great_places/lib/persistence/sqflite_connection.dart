@@ -17,7 +17,7 @@ class SQFliteConnection implements AConnection<Future<sql.Database>> {
   }
 
   void _createTables(sql.Database db, int version) {
-    db.createTable(Place().factory());
+    db.createTable(Place.factory({}));
   }
 
 }

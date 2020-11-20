@@ -6,7 +6,6 @@ import '../../persistence/abstractions/table_abstraction.dart';
 import '../models/location.dart';
 
 class Place extends ATable {
-
   final String id;
   final String title;
   final String locationId;
@@ -16,24 +15,21 @@ class Place extends ATable {
   File image;
 
   Place({
-  this.id,
-  this.title,
-  this.locationId,
-  this.filePath,
+    @required this.id,
+    @required this.title,
+    @required this.locationId,
+    @required this.filePath,
     this.location,
     this.image
-  });
+  }) : super.factory(null);
 
   /*---- ATable -----*/
 
-  Place factory({Map<String, dynamic> values = const {}}) {
-    return Place(
-      id: values['id'],
-      title: values['title'],
-      locationId: values['locationId'],
-      filePath: values['imagePath']
-    );
-  }
+  Place.factory(Map<String, dynamic> values) :
+        id = values['id'],
+        title = values['title'],
+        locationId = values['locationId'],
+        filePath = values['image'], super.factory(values);
 
   @override
   String get tableName => 'places';

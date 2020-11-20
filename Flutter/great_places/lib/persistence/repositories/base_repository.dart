@@ -62,7 +62,7 @@ abstract class BaseRepository<T extends ATable> implements ARepository<T> {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getAll(Map<String, dynamic> whereOptions) async {
+  Future<List<Map<String, dynamic>>> getAll() async {
     Database connection;
     try {
       connection = await _connection.getConnection();

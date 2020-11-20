@@ -13,16 +13,13 @@ class Location extends ATable {
     @required this.latitude,
     @required this.longitude,
     @required this.address
-  });
+  }) : super.factory(null);
 
   @override
-  Location factory({Map<String, dynamic> values = const {}}) {
-    return Location(
-      id: values['id'],
-      latitude: values['latitude'],
-      longitude: values['longitude'],
-      address: values['address']
-    );
-  }
+  Location.factory(Map<String, dynamic> values) :
+      id = values['id'],
+      latitude = values['latitude'],
+      longitude = values['longitude'],
+      address = values['address'], super.factory(values);
 
 }
