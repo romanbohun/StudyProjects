@@ -51,8 +51,8 @@ abstract class BaseRepository<T extends ATable> implements ARepository<T> {
       connection = await storageConnection.getConnection();
       final data = await connection.query(
           _tableName,
-          where: _getWhereClause(whereOptions.keys),
-          whereArgs: whereOptions.values
+          where: _getWhereClause(whereOptions.keys.toList()),
+          whereArgs: whereOptions.values.toList()
       );
       return data.first;
     } catch (error) {
@@ -90,8 +90,12 @@ abstract class BaseRepository<T extends ATable> implements ARepository<T> {
 
   String _getWhereClause(List<String> keys) {
     var stringBuffer = StringBuffer();
-    stringBuffer.writeAll(keys, " = ? AND ");
-    return stringBuffer.toString().substring(0, stringBuffer.length - 5);
+
+    keys.forEach((key) {
+      stringBuffer.write(key);
+      stringBuffer.write(' = ? AND, ');
+    });
+    return stringBuffer.toString().substring(0, stringBuffer.length - 6);
   }
 
   List<dynamic> _getWhereArgs(List<String> keys, Map<String, dynamic> values) {

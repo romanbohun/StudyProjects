@@ -33,6 +33,11 @@ class PlaceProvider with ChangeNotifier {
   Future<void> fetch() async {
     final listOfPlaces = await _placeRepository.getAll();
     _places = listOfPlaces.map((place) => Place.factory(place)).toList();
+
+    for (var place in _places) {
+      final locationMap = await _locationRepository.get({'id' : place.locationId});
+      place.location = Location.factory(locationMap);
+    }
     notifyListeners();
   }
 
