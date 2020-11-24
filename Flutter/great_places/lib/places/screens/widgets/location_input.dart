@@ -4,7 +4,10 @@ import 'package:great_places/common/screens/map_screen.dart';
 import 'package:great_places/common/services/location_service.dart';
 
 class LocationInput extends StatefulWidget {
+  final Function onPlaceSelected;
   final locationService = LocationService();
+
+  LocationInput(this.onPlaceSelected);
 
   @override
   _LocationInputState createState() => _LocationInputState();
@@ -14,10 +17,22 @@ class _LocationInputState extends State<LocationInput> {
   String _previewImageUrl;
 
   Future<void> _getCurrentLocation() async {
-    final currentLocationUrl = await widget.locationService.generateLocationPreviewImageUrlForCurrentLocation();
+    final currentLocationPreview = await widget.locationService.generateLocationPreviewImageUrlForCurrentLocation();
     setState(() {
-      _previewImageUrl = currentLocationUrl;
+      _previewImageUrl = currentLocationPreview.url;
     });
+
+    final address = await widget.locationService
+        .getPlaceAddress(
+      latitude: currentLocationPreview.coordinates.latitude,
+      longitude: currentLocationPreview.coordinates.longitude,
+    );
+
+    widget.onPlaceSelected(
+        currentLocationPreview.coordinates.latitude,
+        currentLocationPreview.coordinates.longitude,
+        address
+    );
   }
 
   Future<void> _selectOnMap() async {
@@ -32,7 +47,12 @@ class _LocationInputState extends State<LocationInput> {
       return;
     }
 
-    print(selectedLocation);
+    final address = await widget.locationService
+        .getPlaceAddress(
+      latitude: selectedLocation.latitude,
+      longitude: selectedLocation.longitude,
+    );
+    widget.onPlaceSelected(selectedLocation.latitude, selectedLocation.longitude, address);
   }
 
   @override

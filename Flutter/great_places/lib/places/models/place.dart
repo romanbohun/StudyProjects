@@ -12,7 +12,6 @@ class Place extends ATable {
   final String filePath;
 
   Location location;
-  File image;
 
   Place({
     @required this.id,
@@ -20,11 +19,11 @@ class Place extends ATable {
     @required this.locationId,
     @required this.filePath,
     this.location,
-    this.image
   }) : super.factory(null);
 
   /*---- ATable -----*/
 
+  @override
   Place.factory(Map<String, dynamic> values) :
         id = values['id'],
         title = values['title'],
@@ -32,7 +31,7 @@ class Place extends ATable {
         filePath = values['image'], super.factory(values);
 
   @override
-  String get tableName => 'places';
+  String get tableName => 'place';
 
   @override
   Map<String, Type> get fields => {

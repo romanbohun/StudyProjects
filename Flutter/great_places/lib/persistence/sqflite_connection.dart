@@ -1,3 +1,4 @@
+import 'package:great_places/places/models/location.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
 
@@ -9,6 +10,8 @@ class SQFliteConnection implements AConnection<Future<sql.Database>> {
   final _dbName = 'places.db';
   final _version = 1;
 
+  const SQFliteConnection();
+
   @override
   Future<sql.Database> getConnection() async {
     final dbPath = await sql.getDatabasesPath();
@@ -18,6 +21,7 @@ class SQFliteConnection implements AConnection<Future<sql.Database>> {
 
   void _createTables(sql.Database db, int version) {
     db.createTable(Place.factory({}));
+    db.createTable(Location.factory({}));
   }
 
 }
@@ -25,7 +29,7 @@ class SQFliteConnection implements AConnection<Future<sql.Database>> {
 extension Ddl on sql.Database {
   Type typeOf<T>() => T;
 
-  void createTable(Place aTable) {
+  void createTable(ATable aTable) {
 
     final tableName = aTable.tableName ?? aTable.toString();
     if (tableName == null) {
@@ -75,6 +79,10 @@ extension Ddl on sql.Database {
     switch(dartType) {
       case String:
         return 'TEXT';
+        break;
+      case double:
+      case int:
+        return 'INTEGER';
         break;
     }
 
