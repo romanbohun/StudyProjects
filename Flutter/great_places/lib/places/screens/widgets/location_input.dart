@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:great_places/common/screens/map_screen.dart';
 import 'package:great_places/common/services/location_service.dart';
 
 class LocationInput extends StatefulWidget {
@@ -18,6 +19,19 @@ class _LocationInputState extends State<LocationInput> {
     });
   }
 
+  Future<void> _selectOnMap() async {
+    final selectedLocation = await Navigator.of(context)
+        .push(
+        MaterialPageRoute(
+          builder: (ctx) => MapScreen(isEditable: true,),
+        )
+    );
+
+    if (selectedLocation == null) {
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,10 +41,10 @@ class _LocationInputState extends State<LocationInput> {
             width: double.infinity,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              border: Border.all(
-                width: 1,
-                color: Colors.grey,
-              )
+                border: Border.all(
+                  width: 1,
+                  color: Colors.grey,
+                )
             ),
             child: _previewImageUrl == null
                 ? Text(
@@ -53,7 +67,7 @@ class _LocationInputState extends State<LocationInput> {
               textColor: Theme.of(context).primaryColor,
             ),
             FlatButton.icon(
-              onPressed: null,
+              onPressed: _selectOnMap,
               icon: Icon(Icons.map),
               label: Text('Select on Map'),
               textColor: Theme.of(context).primaryColor,
