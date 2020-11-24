@@ -51,6 +51,7 @@ class PlacesListScreen extends StatelessWidget {
                     backgroundImage: FileImage(file),
                   ),
                   title: Text(place.title),
+                  subtitle: Text(place.location.address ?? 'Address is not defined'),
                   onTap: _itemSelectedHandler,
                 );
               }

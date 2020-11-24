@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:great_places/common/screens/map_screen.dart';
 import 'package:great_places/common/services/location_service.dart';
+import 'package:great_places/places/models/location_preview.dart';
 
 class LocationInput extends StatefulWidget {
   final Function onPlaceSelected;
@@ -14,12 +15,27 @@ class LocationInput extends StatefulWidget {
 }
 
 class _LocationInputState extends State<LocationInput> {
-  String _previewImageUrl;
+  LocationPreview _locationPreview;
+
+  Future<LocationPreview> _getLocationPreviewForCurrentLocation() async {
+    return await widget.locationService.generateLocationPreviewImageUrlForCurrentLocation();
+  }
+
+  Future<LocationPreview> _getLocationPreviewForCoordinates({
+    double latitude,
+    double longitude
+  }) async {
+    return await widget.locationService.generateLocationPreviewImageUrl(
+        latitude: latitude,
+        longitude: longitude
+    );
+  }
 
   Future<void> _getCurrentLocation() async {
-    final currentLocationPreview = await widget.locationService.generateLocationPreviewImageUrlForCurrentLocation();
+    final currentLocationPreview = await _getLocationPreviewForCurrentLocation();
+
     setState(() {
-      _previewImageUrl = currentLocationPreview.url;
+      _locationPreview = currentLocationPreview;
     });
 
     final address = await widget.locationService
@@ -47,11 +63,21 @@ class _LocationInputState extends State<LocationInput> {
       return;
     }
 
+    final locationPreview = await _getLocationPreviewForCoordinates(
+        latitude: selectedLocation.latitude,
+        longitude: selectedLocation.longitude
+    );
+
+    setState(() {
+      _locationPreview = locationPreview;
+    });
+
     final address = await widget.locationService
         .getPlaceAddress(
       latitude: selectedLocation.latitude,
       longitude: selectedLocation.longitude,
     );
+
     widget.onPlaceSelected(selectedLocation.latitude, selectedLocation.longitude, address);
   }
 
@@ -69,13 +95,13 @@ class _LocationInputState extends State<LocationInput> {
                   color: Colors.grey,
                 )
             ),
-            child: _previewImageUrl == null
+            child: _locationPreview == null
                 ? Text(
               'No Location Chosen',
               textAlign: TextAlign.center,
             )
                 : Image.network(
-              _previewImageUrl,
+              _locationPreview.url,
               fit: BoxFit.cover,
               width: double.infinity,
             )
