@@ -5,6 +5,5 @@ import '../abstractions/connection_abstract.dart';
 import '../../places/models/place.dart';
 
 class PlaceRepository extends BaseRepository {
-  PlaceRepository(AConnection<Future<Database>> connection)
-      : super(connection, Place().tableName);
+  PlaceRepository() : super(Place().tableName);
 }

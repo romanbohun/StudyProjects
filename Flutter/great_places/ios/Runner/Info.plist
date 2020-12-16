@@ -47,5 +47,11 @@
     <string>Great Place wants to use a camera to take a photo</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Great Place wants to use a microphone to record a video with a sound</string>
+
+    <key>NSLocationWhenInUseUsageDescription</key>
+        <string>Great Place needs to get your location!</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+         <string>Great Place needs to get your location!</string>
+
 </dict>
 </plist>

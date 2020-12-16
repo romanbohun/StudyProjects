@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:great_places/places/providers/places_provider.dart';
+import 'package:great_places/places/providers/place_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProvidersRegistrar extends MultiProvider {
@@ -11,7 +11,7 @@ class ProvidersRegistrar extends MultiProvider {
     key: key,
     providers: [
       ChangeNotifierProvider(
-        create: (ctx) => PlacesProvider(),
+        create: (ctx) => PlaceProvider(),
       )
     ],
     child: child,

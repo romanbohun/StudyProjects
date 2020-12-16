@@ -1,3 +1,4 @@
+import 'package:great_places/persistence/sqflite_connection.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../abstractions/connection_abstract.dart';
@@ -5,16 +6,16 @@ import '../abstractions/repository_abstraction.dart';
 import '../abstractions/table_abstraction.dart';
 
 abstract class BaseRepository<T extends ATable> implements ARepository<T> {
-  final AConnection<Future<Database>> _connection;
+  final AConnection<Future<Database>> storageConnection;
   final String _tableName;
 
-  BaseRepository(this._connection, this._tableName);
+  BaseRepository(this._tableName, {this.storageConnection = const SQFliteConnection()});
 
   @override
   Future<int> add(Map<String, dynamic> values) async {
     Database connection;
     try {
-      connection = await _connection.getConnection();
+      connection = await storageConnection.getConnection();
       return await connection.insert(
           _tableName,
           values,
@@ -30,7 +31,7 @@ abstract class BaseRepository<T extends ATable> implements ARepository<T> {
   Future<int> delete(List<String> keys, Map<String, dynamic> values) async {
     Database connection;
     try {
-      connection = await _connection.getConnection();
+      connection = await storageConnection.getConnection();
       return await connection.delete(
           _tableName,
           where: _getWhereClause(keys),
@@ -47,11 +48,11 @@ abstract class BaseRepository<T extends ATable> implements ARepository<T> {
   Future<Map<String, dynamic>> get(Map<String, dynamic> whereOptions) async {
     Database connection;
     try {
-      connection = await _connection.getConnection();
+      connection = await storageConnection.getConnection();
       final data = await connection.query(
           _tableName,
-          where: _getWhereClause(whereOptions.keys),
-          whereArgs: whereOptions.values
+          where: _getWhereClause(whereOptions.keys.toList()),
+          whereArgs: whereOptions.values.toList()
       );
       return data.first;
     } catch (error) {
@@ -65,7 +66,7 @@ abstract class BaseRepository<T extends ATable> implements ARepository<T> {
   Future<List<Map<String, dynamic>>> getAll() async {
     Database connection;
     try {
-      connection = await _connection.getConnection();
+      connection = await storageConnection.getConnection();
       return await connection.query(_tableName);
     } catch (error) {
       return null;
@@ -78,7 +79,7 @@ abstract class BaseRepository<T extends ATable> implements ARepository<T> {
   Future<int> update(Map<String, dynamic> values) async {
     Database connection;
     try {
-      connection = await _connection.getConnection();
+      connection = await storageConnection.getConnection();
       return await connection.update(_tableName, values);
     } catch (error) {
       return null;
@@ -89,8 +90,12 @@ abstract class BaseRepository<T extends ATable> implements ARepository<T> {
 
   String _getWhereClause(List<String> keys) {
     var stringBuffer = StringBuffer();
-    stringBuffer.writeAll(keys, " = ? AND ");
-    return stringBuffer.toString().substring(0, stringBuffer.length - 5);
+
+    keys.forEach((key) {
+      stringBuffer.write(key);
+      stringBuffer.write(' = ? AND, ');
+    });
+    return stringBuffer.toString().substring(0, stringBuffer.length - 6);
   }
 
   List<dynamic> _getWhereArgs(List<String> keys, Map<String, dynamic> values) {

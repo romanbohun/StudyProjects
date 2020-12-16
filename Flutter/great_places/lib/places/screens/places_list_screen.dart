@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:great_places/common/routes/routes.dart';
-import 'package:great_places/places/providers/places_provider.dart';
+import 'package:great_places/places/providers/place_provider.dart';
 import 'package:provider/provider.dart';
 
 class PlacesListScreen extends StatelessWidget {
@@ -28,13 +28,13 @@ class PlacesListScreen extends StatelessWidget {
         ],
       ),
       body: FutureBuilder(
-        future: Provider.of<PlacesProvider>(context, listen: false).fetch(),
+        future: Provider.of<PlaceProvider>(context, listen: false).fetch(),
         builder: (ctx, snapshot) =>
         snapshot.connectionState == ConnectionState.waiting
             ? Center(
           child: CircularProgressIndicator(),
         )
-            : Consumer<PlacesProvider> (
+            : Consumer<PlaceProvider> (
           child: Center(
             child: const Text('Got on places yet, start adding some!'),
           ),
@@ -51,6 +51,7 @@ class PlacesListScreen extends StatelessWidget {
                     backgroundImage: FileImage(file),
                   ),
                   title: Text(place.title),
+                  subtitle: Text(place.location.address ?? 'Address is not defined'),
                   onTap: _itemSelectedHandler,
                 );
               }
