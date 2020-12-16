@@ -420,3 +420,4 @@ ASALocalRun/
 .mfractor/
 Libs
 Pods/
+.DS_Store
