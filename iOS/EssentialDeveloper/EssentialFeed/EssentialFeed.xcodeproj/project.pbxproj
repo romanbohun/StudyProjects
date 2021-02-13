@@ -81,10 +81,10 @@
 		30CA5A00258A482100AFB0B0 /* EssentialFeed */ = {
 			isa = PBXGroup;
 			children = (
+				30CA5A22258A4AA800AFB0B0 /* Feed */,
 				30CA5A37258A547E00AFB0B0 /* FeedApi */,
 				30CA5A01258A482100AFB0B0 /* EssentialFeed.h */,
 				30CA5A02258A482100AFB0B0 /* Info.plist */,
-				30CA5A22258A4AA800AFB0B0 /* Feed */,
 			);
 			path = EssentialFeed;
 			sourceTree = "<group>";
