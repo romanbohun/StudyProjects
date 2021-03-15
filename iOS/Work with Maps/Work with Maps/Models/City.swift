@@ -9,5 +9,6 @@ struct City {
 
     let name: String
     let coordinates: Coordinates
-
+    let viewSettings: MapSettings?
+    
 }

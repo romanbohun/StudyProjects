@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     private let _map: MKMapView = {
         var map = MKMapView(frame: .zero)
         map.translatesAutoresizingMaskIntoConstraints = false
-        map.mapType = .standard
+        map.mapType = .satellite
         map.isZoomEnabled = true
         map.isRotateEnabled = true
         map.showsBuildings = true
@@ -150,7 +150,12 @@ class ViewController: UIViewController {
     @objc private func segmentedControlAction(_ control: UISegmentedControl) {
         let city = _viewModel.cities[control.selectedSegmentIndex]
         let coordinates2D = CLLocationCoordinate2DMake(city.coordinates.latitude, city.coordinates.longitude)
-        updateMapRegion(with: coordinates2D, rangeSpan: _viewModel.zoom)
+
+        if let settings = city.viewSettings {
+            updateMapCamera(coordinates: coordinates2D, heading: settings.heading, altitude: settings.altitude)
+        } else {
+            updateMapRegion(with: coordinates2D, rangeSpan: _viewModel.zoom)
+        }
     }
 
 }
@@ -162,6 +167,18 @@ extension ViewController {
     func updateMapRegion(with coordinates: CLLocationCoordinate2D, rangeSpan: CLLocationDistance) {
         let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: rangeSpan, longitudinalMeters: rangeSpan)
         _map.region = region
+    }
+
+    func updateMapCamera(
+        coordinates: CLLocationCoordinate2D,
+        heading: CLLocationDirection,
+        altitude: CLLocationDistance
+    ) {
+        let camera = MKMapCamera()
+        camera.centerCoordinate = coordinates
+        camera.heading = heading
+        camera.altitude = altitude
+        _map.camera = camera
     }
 
 }
