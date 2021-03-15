@@ -9,6 +9,8 @@ struct MapViewModel {
 
     let cities: [City]
     let zoom: Double = 500
+    var pitch = 0.0
+    var isOn = false
 
     init() {
         cities = [

@@ -10,8 +10,8 @@ import MapKit
 
 class ViewController: UIViewController {
 
-    private let _viewModel = MapViewModel()
-    private var _pitch = CGFloat(0)
+    private var _viewModel = MapViewModel()
+    private var interests: [MKPointOfInterestCategory] = []
 
     private let _actionStackView: UIStackView = {
         var stack = UIStackView(frame: .zero)
@@ -42,9 +42,7 @@ class ViewController: UIViewController {
         map.mapType = .standard
         map.isZoomEnabled = true
         map.isRotateEnabled = true
-        map.showsBuildings = true
         map.isScrollEnabled = true
-        map.showsCompass = true
         return map
     }()
 
@@ -64,11 +62,11 @@ class ViewController: UIViewController {
         return button
     }()
 
-    private let _mapFeaturesButton: UIButton = {
+    private lazy var _mapFeaturesButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Features", for: .normal)
-
+        button.addTarget(self, action: #selector(toggleMapFeatures), for: .touchUpInside)
         return button
     }()
 
@@ -184,9 +182,63 @@ extension ViewController {
     }
 
     @objc private func changePitch(_ sender: UIButton) {
-        _pitch = (_pitch + 15).truncatingRemainder(dividingBy: 90)
-        sender.setTitle("\(_pitch)º", for: .normal)
-        _map.camera.pitch = _pitch
+        _viewModel.pitch = (_viewModel.pitch + 15).truncatingRemainder(dividingBy: 90)
+        sender.setTitle("\(_viewModel.pitch)º", for: .normal)
+        _map.camera.pitch = CGFloat(_viewModel.pitch)
+    }
+
+    @objc private func toggleMapFeatures(_ sender: UIButton) {
+        _viewModel.isOn = !_map.showsScale
+        _map.showsScale = _viewModel.isOn
+        _map.showsCompass = _viewModel.isOn
+        _map.showsTraffic = _viewModel.isOn
+        if _viewModel.isOn {
+            let filters: [MKPointOfInterestCategory] = [
+                .airport,
+                .amusementPark,
+                .aquarium,
+                .atm,
+                .bakery,
+                .bank,
+                .beach,
+                .brewery,
+                .cafe,
+                .campground,
+                .carRental,
+                .evCharger,
+                .fireStation,
+                .fitnessCenter,
+                .foodMarket,
+                .gasStation,
+                .hospital,
+                .hotel,
+                .laundry,
+                .library,
+                .marina,
+                .movieTheater,
+                .museum,
+                .nationalPark,
+                .nightlife,
+                .park,
+                .parking,
+                .pharmacy,
+                .police,
+                .postOffice,
+                .publicTransport,
+                .restaurant,
+                .restroom,
+                .school,
+                .stadium,
+                .store,
+                .theater,
+                .university,
+                .winery,
+                .zoo,
+            ]
+            _map.pointOfInterestFilter = MKPointOfInterestFilter(including:  filters)
+        } else {
+            _map.pointOfInterestFilter = MKPointOfInterestFilter(including: [])
+        }
     }
 
 }
@@ -214,3 +266,4 @@ extension ViewController {
     }
 
 }
+
