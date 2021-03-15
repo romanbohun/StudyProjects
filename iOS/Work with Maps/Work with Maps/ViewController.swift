@@ -36,6 +36,12 @@ class ViewController: UIViewController {
     private let _map: MKMapView = {
         var map = MKMapView(frame: .zero)
         map.translatesAutoresizingMaskIntoConstraints = false
+        map.mapType = .satellite
+        map.isZoomEnabled = true
+        map.isRotateEnabled = true
+        map.showsBuildings = true
+        map.isScrollEnabled = true
+        map.showsCompass = true
         return map
     }()
 
