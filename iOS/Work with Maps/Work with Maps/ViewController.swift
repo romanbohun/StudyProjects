@@ -11,6 +11,7 @@ import MapKit
 class ViewController: UIViewController {
 
     private let _viewModel = MapViewModel()
+    private var _pitch = CGFloat(0)
 
     private let _actionStackView: UIStackView = {
         var stack = UIStackView(frame: .zero)
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
     private let _map: MKMapView = {
         var map = MKMapView(frame: .zero)
         map.translatesAutoresizingMaskIntoConstraints = false
-        map.mapType = .satellite
+        map.mapType = .standard
         map.isZoomEnabled = true
         map.isRotateEnabled = true
         map.showsBuildings = true
@@ -47,19 +48,19 @@ class ViewController: UIViewController {
         return map
     }()
 
-    private let _mapTypeButton: UIButton = {
+    private lazy var _mapTypeButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Type", for: .normal)
-
+        button.addTarget(self, action: #selector(changeMapType), for: .touchUpInside)
         return button
     }()
 
-    private let _map3dButton: UIButton = {
+    private lazy var _map3dButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("3d", for: .normal)
-
+        button.addTarget(self, action: #selector(changePitch), for: .touchUpInside)
         return button
     }()
 
@@ -160,6 +161,35 @@ class ViewController: UIViewController {
 
 }
 
+// MARK: - Actions
+extension ViewController {
+
+    @objc private func changeMapType(_ sender: UIButton) {
+        switch _map.mapType {
+        case .standard:
+            _map.mapType = .satellite
+        case .satellite:
+            _map.mapType = .hybrid
+        case .hybrid:
+            _map.mapType = .satelliteFlyover
+        case .satelliteFlyover:
+            _map.mapType = .hybridFlyover
+        case .hybridFlyover:
+            _map.mapType = .mutedStandard
+        case .mutedStandard:
+            _map.mapType = .standard
+        @unknown default:
+            fatalError()
+        }
+    }
+
+    @objc private func changePitch(_ sender: UIButton) {
+        _pitch = (_pitch + 15).truncatingRemainder(dividingBy: 90)
+        sender.setTitle("\(_pitch)º", for: .normal)
+        _map.camera.pitch = _pitch
+    }
+
+}
 
 // MARK: - Instance Methods
 extension ViewController {
@@ -178,6 +208,8 @@ extension ViewController {
         camera.centerCoordinate = coordinates
         camera.heading = heading
         camera.altitude = altitude
+        camera.pitch = 0.0
+        _map3dButton.setTitle("0º", for: .normal)
         _map.camera = camera
     }
 

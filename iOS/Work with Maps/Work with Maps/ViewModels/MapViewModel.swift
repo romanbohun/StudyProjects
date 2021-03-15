@@ -19,7 +19,7 @@ struct MapViewModel {
             City(
                 name: "Tallinn",
                 coordinates: Coordinates(latitude: 59.4370, longitude: 24.7536),
-                viewSettings: MapSettings(heading: 12.0, altitude: 1500)),
+                viewSettings: MapSettings(heading: 12.0, altitude: 200)),
             City(
                 name: "New York",
                 coordinates: Coordinates(latitude: 40.7216294, longitude: -73.995453),
