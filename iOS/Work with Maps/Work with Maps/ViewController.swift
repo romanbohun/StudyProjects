@@ -10,6 +10,8 @@ import MapKit
 
 class ViewController: UIViewController {
 
+    private let _viewModel = MapViewModel()
+
     private let _actionStackView: UIStackView = {
         var stack = UIStackView(frame: .zero)
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -20,23 +22,23 @@ class ViewController: UIViewController {
         return stack
     }()
 
-    private let _citySegmented: UISegmentedControl = {
+    private lazy var _citySegmented: UISegmentedControl = {
         var segmented = UISegmentedControl(frame: .zero)
         segmented.translatesAutoresizingMaskIntoConstraints = false
-        segmented.insertSegment(withTitle: "Kyiv", at: 0, animated: true)
-        segmented.insertSegment(withTitle: "Tallinn", at: 1, animated: true)
-        segmented.insertSegment(withTitle: "New York", at: 2, animated: true)
-        segmented.insertSegment(withTitle: "Chicago", at: 3, animated: true)
-        segmented.insertSegment(withTitle: "London", at: 4, animated: true)
-        segmented.selectedSegmentIndex = 0
 
+        for cityItem in _viewModel.cities.enumerated() {
+            segmented.insertSegment(withTitle: cityItem.element.name, at: cityItem.offset, animated: true)
+        }
+
+        segmented.addTarget(self, action: #selector(segmentedControlAction), for: .valueChanged)
+        segmented.selectedSegmentIndex = 0
         return segmented
     }()
 
     private let _map: MKMapView = {
         var map = MKMapView(frame: .zero)
         map.translatesAutoresizingMaskIntoConstraints = false
-        map.mapType = .satellite
+        map.mapType = .standard
         map.isZoomEnabled = true
         map.isRotateEnabled = true
         map.showsBuildings = true
@@ -112,7 +114,7 @@ class ViewController: UIViewController {
         _actionStackView.addArrangedSubview(_mapHereButton.applyCustomStyle())
         _actionStackView.addArrangedSubview(_mapFindButton.applyCustomStyle())
 
-        _citySegmented.addTarget(self, action: #selector(segmentedControlAction), for: .valueChanged)
+        segmentedControlAction(_citySegmented)
 
         let actionStackViewLeadingConstraint = _actionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         let actionStackViewTopConstraint = _actionStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
@@ -145,18 +147,21 @@ class ViewController: UIViewController {
         ])
     }
 
-    @objc private func segmentedControlAction(control: UISegmentedControl) {
-        print("selected index -> \(control.selectedSegmentIndex)")
+    @objc private func segmentedControlAction(_ control: UISegmentedControl) {
+        let city = _viewModel.cities[control.selectedSegmentIndex]
+        let coordinates2D = CLLocationCoordinate2DMake(city.coordinates.latitude, city.coordinates.longitude)
+        updateMapRegion(with: coordinates2D, rangeSpan: _viewModel.zoom)
     }
 
 }
 
-extension UIButton {
 
-    func applyCustomStyle() -> UIButton {
-        self.backgroundColor = .white
-        self.setTitleColor(.blue, for: .normal)
-        return self
+// MARK: - Instance Methods
+extension ViewController {
+
+    func updateMapRegion(with coordinates: CLLocationCoordinate2D, rangeSpan: CLLocationDistance) {
+        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: rangeSpan, longitudinalMeters: rangeSpan)
+        _map.region = region
     }
 
 }
