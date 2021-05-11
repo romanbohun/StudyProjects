@@ -17,6 +17,7 @@
 		30CBA79425972476002893FE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CBA79325972476002893FE /* HTTPClient.swift */; };
 		30CBA798259725B5002893FE /* FeedItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CBA797259725B5002893FE /* FeedItemMapper.swift */; };
 		30CCBE6B26384BDE005131B7 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CCBE6A26384BDE005131B7 /* XCTestCase+MemoryLeakTracking.swift */; };
+		30CCBE71264AB991005131B7 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CCBE70264AB991005131B7 /* URLSessionHTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		30CBA79325972476002893FE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		30CBA797259725B5002893FE /* FeedItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemMapper.swift; sourceTree = "<group>"; };
 		30CCBE6A26384BDE005131B7 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		30CCBE70264AB991005131B7 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				30CA5A38258A54A200AFB0B0 /* RemoteFeedLoader.swift */,
 				30CBA79325972476002893FE /* HTTPClient.swift */,
 				30CBA797259725B5002893FE /* FeedItemMapper.swift */,
+				30CCBE70264AB991005131B7 /* URLSessionHTTPClient.swift */,
 			);
 			path = FeedApi;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				30CA5A39258A54A200AFB0B0 /* RemoteFeedLoader.swift in Sources */,
 				30CBA79425972476002893FE /* HTTPClient.swift in Sources */,
 				30CA5A1B258A484400AFB0B0 /* FeedItem.swift in Sources */,
+				30CCBE71264AB991005131B7 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
