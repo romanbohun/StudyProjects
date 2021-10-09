@@ -29,12 +29,17 @@ public final class LocalFeedLoader {
         }
     }
 
+    public func load() {
+        _store.retrieve()
+    }
+    
     private func cache(_ feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
         _store.insert(feed.toLocal(), timestamp: _currentDate()) { [weak self] error in
             guard self != nil else { return }
             completion(error)
         }
     }
+
 }
 
 private extension Array where Element == FeedImage {
