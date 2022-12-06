@@ -1,0 +1,3 @@
+/Volumes/Data/Projects/C/ncursetest/cmake-build-debug/CMakeFiles/ncursetest.dir
+/Volumes/Data/Projects/C/ncursetest/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/Data/Projects/C/ncursetest/cmake-build-debug/CMakeFiles/rebuild_cache.dir
