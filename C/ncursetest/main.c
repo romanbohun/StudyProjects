@@ -7,9 +7,8 @@
 
 #define BLANK ' '
 
-#define SPACE_KEY  32
-#define ENTER_KEY  10
-int key_pressed = 0;
+#define SPACE_KEY 32
+#define ENTER_KEY 10
 
 #define s_ball1 '!'
 #define s_ball2 '@'
@@ -32,9 +31,16 @@ const short c_selected_ball = 10;
 const short c_level_label = 11;
 const short c_level_number = 12;
 const short c_control_text = 13;
+const short c_win_text = 14;
+const short c_game_over_text = 15;
+
+int key_pressed = 0;
 
 int window_width, window_height;
+
 int level = 1;
+const int max_level = 5;
+
 int field_rows = 0;
 int field_columns = 0;
 
@@ -46,9 +52,11 @@ void ball_sort_puzzle();
 void SetupColors();
 int get_string_length(const char* str);
 int calculate_logo_width();
+int calculate_win_width();
+int calculate_game_over_width();
 void draw_logo(int h, int w);
 
-const char *game_logo[6] = {
+const char *logo[6] = {
         " _____             _     ____        _ _   _____               _",
         "/ ____|           | |   |  _ \\      | | | |  __ \\             | |",
         "| (___   ___  _ __| |_  | |_) | __ _| | | | |__) |   _ _______| | ___",
@@ -57,11 +65,35 @@ const char *game_logo[6] = {
         "|_____/ \\___/|_|   \\__| |____/ \\__,_|_|_| |_|    \\__,_/___/___|_|\\___|"
 };
 
-int logo_height = sizeof(game_logo) / sizeof(game_logo[0]);
+const char *win_message[6] = {
+        " ____  ____                              _           ",
+        "|_  _||_  _|                            (_)         ",
+        "  \\ \\  / / .--.   __   _    _   _   __  __   _ .--.   ",
+        "   \\ \\/ // .'`\\ \\[  | | |  [ \\ [ \\ [  ][  | [ `.-. |   ",
+        "   _|  |_| \\__. | | \\_/ |,  \\ \\/\\ \\/ /  | |  | | | |   ",
+        "  |______|'.__.'  '.__.'_/   \\__/\\__/  [___][___||__] "
+};
+
+const char *game_over[6] = {
+        " _____                            ____                      ",
+        "/ ____|                          / __ \\                     ",
+        "| |  __   __ _  _ __ ___    ___  | |  | |__   __ ___  _ __  ",
+        "| | |_ | / _` || '_ ` _ \\  / _ \\ | |  | |\\ \\ / // _ \\| '__| ",
+        "| |__| || (_| || | | | | ||  __/ | |__| | \\ V /|  __/| |    ",
+        "\\_____| \\__,_||_| |_| |_| \\___|  \\____/   \\_/  \\___||_|     "
+};
+
+int game_over_height = sizeof(game_over) / sizeof(game_over[0]);
+int game_over_width = 1;
+
+int win_message_height = sizeof(win_message) / sizeof(win_message[0]);
+int win_message_width = 1;
+
+int logo_height = sizeof(logo) / sizeof(logo[0]);
 int logo_width = 1;
 
 char *message[1] = {""};
-char *controls_rules[1] = {"Navigation <- -> arrows. SPACE to select and put ball."};
+char *controls_rules[1] = {"Navigation <- -> arrows. SPACE to select and put ball. Q main menu."};
 
 int main() {
     initscr();
@@ -161,6 +193,7 @@ int main() {
             case GAME:
                 ball_sort_puzzle();
                 current_state = MENU;
+                timeout(0);
                 break;
 
             case EXIT:
@@ -197,6 +230,9 @@ void SetupColors() {
     init_pair(c_level_number, COLOR_RED, COLOR_WHITE);
 
     init_pair(c_control_text, COLOR_BLUE, COLOR_WHITE);
+
+    init_pair(c_win_text, COLOR_GREEN, COLOR_BLACK);
+    init_pair(c_game_over_text, COLOR_RED, COLOR_BLACK);
 }
 
 void draw_logo(int h, int w) {
@@ -206,56 +242,90 @@ void draw_logo(int h, int w) {
 
     attron(COLOR_PAIR(c_logo));
     for (int i = 0; i < logo_height; i++) {
-        mvprintw(3 + i, w/2 - logo_width, game_logo[i]);
+        mvprintw(3 + i, w/2 - logo_width, logo[i]);
     }
     attroff(COLOR_PAIR(c_logo));
 }
 
+void draw_win_message(int h, int w) {
+    if (win_message_width == 1) {
+        win_message_width = calculate_win_width() / 2;
+    }
+
+    attron(COLOR_PAIR(c_win_text));
+    for (int i = 0; i < win_message_height; i++) {
+        mvprintw(3 + i, w/2 - win_message_width, win_message[i]);
+    }
+    attroff(COLOR_PAIR(c_win_text));
+}
+
+void draw_game_over(int h, int w) {
+    if (game_over_width == 1) {
+        game_over_width = calculate_game_over_width() / 2;
+    }
+
+    attron(COLOR_PAIR(c_game_over_text));
+    for (int i = 0; i < game_over_height; i++) {
+        mvprintw(3 + i, w/2 - game_over_width, game_over[i]);
+    }
+    attroff(COLOR_PAIR(c_game_over_text));
+}
+
+void print_message(int y) {
+    if (strcmp(message[0], "") != 0) {
+        mvprintw(y + field_rows + 1 + (window_height / 5), window_width / 2 - (get_string_length(message[0]) / 2), message[0]);
+    }
+}
+
 void turn_on_ball_color(int ball) {
-    if (ball == s_ball1) {
-        attron(COLOR_PAIR(c_ball1));
-    }
-    if (ball == s_ball2) {
-        attron(COLOR_PAIR(c_ball2));
-    }
-    if (ball == s_ball3) {
-        attron(COLOR_PAIR(c_ball3));
-    }
-    if (ball == s_ball4) {
-        attron(COLOR_PAIR(c_ball4));
-    }
-    if (ball == s_ball5) {
-        attron(COLOR_PAIR(c_ball5));
-    }
-    if (ball == s_ball6) {
-        attron(COLOR_PAIR(c_ball6));
-    }
-    if (ball == s_ball7) {
-        attron(COLOR_PAIR(c_ball7));
+    switch (ball) {
+        case s_ball1:
+            attron(COLOR_PAIR(c_ball1));
+            break;
+        case s_ball2:
+            attron(COLOR_PAIR(c_ball2));
+            break;
+        case s_ball3:
+            attron(COLOR_PAIR(c_ball3));
+            break;
+        case s_ball4:
+            attron(COLOR_PAIR(c_ball4));
+            break;
+        case s_ball5:
+            attron(COLOR_PAIR(c_ball5));
+            break;
+        case s_ball6:
+            attron(COLOR_PAIR(c_ball6));
+            break;
+        case s_ball7:
+            attron(COLOR_PAIR(c_ball7));
+            break;
     }
 }
 
 void turn_off_ball_color(int ball) {
-    if (ball == s_ball1) {
-        attroff(COLOR_PAIR(c_ball1));
-    }
-    if (ball == s_ball2) {
-        attroff(COLOR_PAIR(c_ball2));
-    }
-    if (ball == s_ball3) {
-        attroff(COLOR_PAIR(c_ball3));
-    }
-    if (ball == s_ball4) {
-        attroff(COLOR_PAIR(c_ball4));
-    }
-    if (ball == s_ball5) {
-        attroff(COLOR_PAIR(c_ball5));
-    }
-    if (ball == s_ball6) {
-        attroff(COLOR_PAIR(c_ball6));
-    }
-    if (ball == s_ball7) {
-        attroff(COLOR_PAIR(c_ball7));
+    switch (ball) {
+        case s_ball1:
+            attroff(COLOR_PAIR(c_ball1));
+            break;
+        case s_ball2:
+            attroff(COLOR_PAIR(c_ball2));
+            break;
+        case s_ball3:
+            attroff(COLOR_PAIR(c_ball3));
+            break;
+        case s_ball4:
+            attroff(COLOR_PAIR(c_ball4));
+            break;
+        case s_ball5:
+            attroff(COLOR_PAIR(c_ball5));
+            break;
+        case s_ball6:
+            attroff(COLOR_PAIR(c_ball6));
+            break;
+        case s_ball7:
+            attroff(COLOR_PAIR(c_ball7));
+            break;
     }
 }
 
@@ -403,6 +473,8 @@ void init_field_size() {
 }
 
 void ball_sort_puzzle(){
+    level = 1;
+
     init_field_size();
 
     char field[field_rows][field_columns];
@@ -415,6 +487,7 @@ void ball_sort_puzzle(){
     int where = -1;
     int selector = 0;
     int selected_ball_column = -1;
+    bool game_finished = false;
 
     while(inProgress){
 
@@ -440,71 +513,125 @@ void ball_sort_puzzle(){
 
         getmaxyx(stdscr, window_height, window_width);
 
-        int xStart = window_width / 2 - ((field_columns * 4) / 2);
-        int yStart = window_height / 2 - ((field_rows + 1) / 2);
-
-        int xCursorPosition = xStart + 2;
-        int yCursorPosition = yStart - 1;
-
-        attron(COLOR_PAIR(c_level_label));
-        for(int i = 1; i < window_width; i++) {
-            mvprintw(1, i, " ");
-        }
-        mvprintw(1, 1, "LEVEL: %c", 48 + level);
-        attroff(COLOR_PAIR(c_level_label));
-
-        mvprintw(yCursorPosition, xCursorPosition + (selector * 4), "V");
-
-        game_field(field_rows, field_columns, field, xStart, yStart);
-
-        if (selected_ball_column >= 0) {
-            attron(COLOR_PAIR(c_selected_ball));
-            mvprintw(yCursorPosition - 1, xCursorPosition + (selector * 4), "?");
-            attroff(COLOR_PAIR(c_selected_ball));
-        }
-        mvprintw(yCursorPosition, xCursorPosition + (selector * 4), "V");
-
-        if (selected_ball_column >= 0) {
-            attron(COLOR_PAIR(c_selected_ball));
-            mvprintw(yStart, xCursorPosition + (selected_ball_column * 4), "V");
-            attroff(COLOR_PAIR(c_selected_ball));
-        }
-
-        if (strcmp(message[0], "") != 0) {
-            mvprintw(yStart + field_rows + 1 + (window_height / 5), window_width / 2 - (get_string_length(message[0]) / 2), message[0]);
-        }
-
-        attron(COLOR_PAIR(c_control_text));
-        for(int i = 1; i < window_width; i++) {
-            mvprintw(window_height - 2, i, " ");
-        }
-        mvprintw(window_height - 2, window_width / 2 - (get_string_length(controls_rules[0]) / 2), controls_rules[0]);
-        attroff(COLOR_PAIR(c_control_text));
-
-        attron(COLOR_PAIR(c_box));
-        box(stdscr, 0, 0);
-        attroff(COLOR_PAIR(c_box));
-
         if (won) {
+            key_pressed = -1;
+
+            while(key_pressed < 0) {
+                getmaxyx(stdscr, window_height, window_width);
+
+                erase();
+
+                draw_win_message(window_height, window_width);
+
+                attron(COLOR_PAIR(c_box));
+                box(stdscr, 0, 0);
+                attroff(COLOR_PAIR(c_box));
+
+                message[0] = "Press any key";
+                print_message(10);
+
+                key_pressed = wgetch(stdscr);
+                napms(100);
+                key_pressed = wgetch(stdscr);
+            }
+
+            clear_message();
+
             level += 1;
+
+            if (level > max_level) {
+                game_finished = true;
+                break;
+            }
+
             init_field_size();
             generator(field_rows, field_columns, field);
-        }
+            won = false;
+        } else {
+            int xStart = window_width / 2 - ((field_columns * 4) / 2);
+            int yStart = window_height / 2 - ((field_rows + 1) / 2);
 
-        if (what >=0 && where >= 0) {
-            down_possible(field_rows, field_columns, field, what, where);
-            what = -1;
-            where = -1;
-            selected_ball_column = -1;
-        }
+            int xCursorPosition = xStart + 2;
+            int yCursorPosition = yStart - 1;
 
-        won = check(field_rows, field_columns, field);
+            attron(COLOR_PAIR(c_level_label));
+            for(int i = 1; i < window_width; i++) {
+                mvprintw(1, i, " ");
+            }
+            mvprintw(1, 1, "LEVEL: %c", 48 + level);
+            attroff(COLOR_PAIR(c_level_label));
+
+            mvprintw(yCursorPosition, xCursorPosition + (selector * 4), "V");
+
+            game_field(field_rows, field_columns, field, xStart, yStart);
+
+            if (selected_ball_column >= 0) {
+                attron(COLOR_PAIR(c_selected_ball));
+                mvprintw(yCursorPosition - 1, xCursorPosition + (selector * 4), "?");
+                attroff(COLOR_PAIR(c_selected_ball));
+            }
+            mvprintw(yCursorPosition, xCursorPosition + (selector * 4), "V");
+
+            if (selected_ball_column >= 0) {
+                attron(COLOR_PAIR(c_selected_ball));
+                mvprintw(yStart, xCursorPosition + (selected_ball_column * 4), "V");
+                attroff(COLOR_PAIR(c_selected_ball));
+            }
+
+            print_message(yStart);
+
+            attron(COLOR_PAIR(c_control_text));
+            for(int i = 1; i < window_width; i++) {
+                mvprintw(window_height - 2, i, " ");
+            }
+            mvprintw(window_height - 2, window_width / 2 - (get_string_length(controls_rules[0]) / 2), controls_rules[0]);
+            attroff(COLOR_PAIR(c_control_text));
+
+            attron(COLOR_PAIR(c_box));
+            box(stdscr, 0, 0);
+            attroff(COLOR_PAIR(c_box));
+
+            if (what >=0 && where >= 0) {
+                down_possible(field_rows, field_columns, field, what, where);
+                what = -1;
+                where = -1;
+                selected_ball_column = -1;
+            }
+
+            won = check(field_rows, field_columns, field);
+        }
 
         key_pressed = wgetch(stdscr);
         napms(100);
         key_pressed = wgetch(stdscr);
 
         erase();
+    }
+
+    if (game_finished) {
+
+        key_pressed = -1;
+
+        while(key_pressed < 0) {
+            getmaxyx(stdscr, window_height, window_width);
+
+            erase();
+
+            draw_game_over(window_height, window_width);
+
+            attron(COLOR_PAIR(c_box));
+            box(stdscr, 0, 0);
+            attroff(COLOR_PAIR(c_box));
+
+            message[0] = "Press any key";
+            print_message(10);
+
+            key_pressed = wgetch(stdscr);
+            napms(100);
+            key_pressed = wgetch(stdscr);
+        }
+
+        clear_message();
     }
 }
 
@@ -539,10 +666,34 @@ int calculate_logo_width() {
     int logo_w_size = 1;
 
     for (int i = 0; i < logo_height; i++) {
-        int len = get_string_length(game_logo[i]);
+        int len = get_string_length(logo[i]);
         if (len > logo_w_size) {
-            logo_w_size = get_string_length(game_logo[i]);
+            logo_w_size = get_string_length(logo[i]);
         }
     }
     return logo_w_size;
+}
+
+int calculate_win_width() {
+    int win_w_size = 1;
+
+    for (int i = 0; i < win_message_height; i++) {
+        int len = get_string_length(win_message[i]);
+        if (len > win_w_size) {
+            win_w_size = get_string_length(win_message[i]);
+        }
+    }
+    return win_w_size;
+}
+
+int calculate_game_over_width() {
+    int w_size = 1;
+
+    for (int i = 0; i < game_over_height; i++) {
+        int len = get_string_length(game_over[i]);
+        if (len > w_size) {
+            w_size = get_string_length(game_over[i]);
+        }
+    }
+    return w_size;
 }
